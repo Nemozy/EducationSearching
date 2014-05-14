@@ -10,14 +10,7 @@ namespace EducationSearching.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Измените этот шаблон, чтобы быстро приступить к работе над приложением ASP.NET MVC.";
-
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Страница описания приложения.";
+            ViewBag.Message = "";
 
             return View();
         }

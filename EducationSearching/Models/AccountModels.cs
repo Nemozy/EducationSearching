@@ -11,11 +11,33 @@ namespace EducationSearching.Models
     public class UsersContext : DbContext
     {
         public UsersContext()
-            : base("DefaultConnection")
+            : base("DB_accounts")//("DefaultConnection")
         {
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<Roles> Roles { get; set; } // добавляем таблицу ролей
+        public DbSet<userInRoles> userInRoles { get; set; } // добавляем таблицу ролей
+    }
+
+    // описание таблицы ролей
+    [Table("Roles")]
+    public class Roles
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int RoleId { get; set; }
+        [Display(Name = "Имя роли")]
+        public string RoleName { get; set; }
+    }
+
+    [Table("userInRoles")]
+    public class userInRoles
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int UserId { get; set; }
+        public string RoleId { get; set; }
     }
 
     [Table("UserProfile")]

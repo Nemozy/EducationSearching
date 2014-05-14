@@ -3,7 +3,7 @@
     <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title — приложение ASP.NET MVC</title>
+        <title>@ViewBag.Title — www.VSTU.ru</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
@@ -12,19 +12,16 @@
     <body>
         <header>
             <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("ваша эмблема здесь", "Index", "Home")</p>
-                </div>
                 <div class="float-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                            <li>@Html.ActionLink("О программе", "About", "Home")</li>
-                            <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Контакты", "Contact", "Home")</li>
                         </ul>
+                        @Html.Partial("~/Views/Main/Index.cshtml")
                     </nav>
                 </div>
             </div>
@@ -38,7 +35,7 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year — приложение ASP.NET MVC</p>
+                    <p>&copy; @DateTime.Now.Year — www.VSTU.ru</p>
                 </div>
             </div>
         </footer>
