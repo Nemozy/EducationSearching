@@ -81,6 +81,21 @@ namespace EducationSearching.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
+
+                    //AccountsDataContext dbACD = new AccountsDataContext();
+                    //private GuestbookContext _db = new GuestbookContext();
+                    UsersContext db = new UsersContext();
+                    EducationSearching.Models.UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
+                   /* int numOfRole = 1;
+                    userInRoles uir = new userInRoles();
+                    uir.RoleId = numOfRole;
+                    uir.UserId = user.UserId;
+                    db.userInRoles.Add(uir);*/
+                    db.Database.ExecuteSqlCommand("insert into userInRoles (UserId, RoleId) VALUES ({0}, {1})", user.UserId, 1);
+                    //db.Entry(uir).State = System.Data.Entity.EntityState.Added;
+                    //db.SaveChanges();
+                   // dbACD.ExecuteCommand("insert into userInRoles (UserId, RoleId) VALUES ({0}, {1})", user.UserId, 1);
+
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
@@ -265,12 +280,13 @@ namespace EducationSearching.Controllers
                 // Добавление нового пользователя в базу данных
                 using (UsersContext db = new UsersContext())
                 {
-                    UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
+                    //UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
+                    EducationSearching.Models.UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
                     // Проверка наличия пользователя в базе данных
                     if (user == null)
                     {
                         // Добавление имени в таблицу профиля
-                        db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
+                        db.UserProfiles.Add(new EducationSearching.Models.UserProfile { UserName = model.UserName });
                         db.SaveChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);

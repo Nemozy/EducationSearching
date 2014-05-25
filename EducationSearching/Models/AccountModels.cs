@@ -37,7 +37,7 @@ namespace EducationSearching.Models
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
-        public string RoleId { get; set; }
+        public int RoleId { get; set; }
     }
 
     [Table("UserProfile")]

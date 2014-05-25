@@ -26,7 +26,7 @@ namespace EducationSearching.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Roles roles = db.Roles.Find(id);
+            EducationSearching.Models.Roles roles = db.Roles.Find(id);
             if (roles == null)
             {
                 return HttpNotFound();
@@ -46,7 +46,7 @@ namespace EducationSearching.Controllers
         // POST: /roles/Create
 
         [HttpPost]
-        public ActionResult Create(Roles roles)
+        public ActionResult Create(EducationSearching.Models.Roles roles)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +63,7 @@ namespace EducationSearching.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Roles roles = db.Roles.Find(id);
+            EducationSearching.Models.Roles roles = db.Roles.Find(id);
             if (roles == null)
             {
                 return HttpNotFound();
@@ -91,7 +91,7 @@ namespace EducationSearching.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Roles roles = db.Roles.Find(id);
+            EducationSearching.Models.Roles roles = db.Roles.Find(id);
             if (roles == null)
             {
                 return HttpNotFound();
@@ -105,7 +105,7 @@ namespace EducationSearching.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Roles roles = db.Roles.Find(id);
+            EducationSearching.Models.Roles roles = db.Roles.Find(id);
             db.Roles.Remove(roles);
             db.SaveChanges();
             return RedirectToAction("Index");

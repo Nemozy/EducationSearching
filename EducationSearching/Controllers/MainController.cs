@@ -6,15 +6,15 @@ using System.Web.Mvc;
 
 namespace EducationSearching.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "User")]
     public class MainController : Controller
     {
         //
         // GET: /Main/
-       // [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "User")]
         public ActionResult Index()
         {
-            ViewBag.Message = "Главная.";
+            ViewBag.Message = "Главная. Вы зашли...";
 
             return View();
         }

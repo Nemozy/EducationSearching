@@ -19,9 +19,12 @@
 <p>Вы входите в группы:</p>
 <table>
     <tr>
-        @{ foreach (string item in Roles.GetRolesForUser())
-           {
-               <li>@item</li>
+        @{if (User.Identity.IsAuthenticated)
+          { 
+              foreach (string item in Roles.GetRolesForUser())
+              {
+                <li>@item</li>
+              }
            }
         }
     </tr>
