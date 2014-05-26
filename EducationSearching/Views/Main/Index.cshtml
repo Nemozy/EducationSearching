@@ -20,11 +20,11 @@
 <table>
     <tr>
         @{if (User.Identity.IsAuthenticated)
-          { 
-              foreach (string item in Roles.GetRolesForUser())
-              {
-                <li>@item</li>
-              }
+          {
+                  foreach (string item in Roles.GetRolesForUser(User.Identity.Name))
+                {
+                    <li>@item</li>
+                }
            }
         }
     </tr>

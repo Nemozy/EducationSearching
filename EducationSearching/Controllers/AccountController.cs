@@ -37,7 +37,8 @@ namespace EducationSearching.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                return RedirectToLocal(returnUrl);
+                return RedirectToAction("Index", "Main");
+                //return RedirectToLocal(returnUrl);
             }
 
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
@@ -82,21 +83,12 @@ namespace EducationSearching.Controllers
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
 
-                    //AccountsDataContext dbACD = new AccountsDataContext();
-                    //private GuestbookContext _db = new GuestbookContext();
                     UsersContext db = new UsersContext();
                     EducationSearching.Models.UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
-                   /* int numOfRole = 1;
-                    userInRoles uir = new userInRoles();
-                    uir.RoleId = numOfRole;
-                    uir.UserId = user.UserId;
-                    db.userInRoles.Add(uir);*/
-                    db.Database.ExecuteSqlCommand("insert into userInRoles (UserId, RoleId) VALUES ({0}, {1})", user.UserId, 1);
-                    //db.Entry(uir).State = System.Data.Entity.EntityState.Added;
-                    //db.SaveChanges();
-                   // dbACD.ExecuteCommand("insert into userInRoles (UserId, RoleId) VALUES ({0}, {1})", user.UserId, 1);
 
-                    return RedirectToAction("Index", "Home");
+                    db.Database.ExecuteSqlCommand("insert into webpages_UsersInRoles (UserId, RoleId) VALUES ({0}, {1})", user.UserId, 1);
+
+                    return RedirectToAction("Index", "Main");
                 }
                 catch (MembershipCreateUserException e)
                 {
