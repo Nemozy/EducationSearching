@@ -21,7 +21,7 @@
     <tr>
         @{if (User.Identity.IsAuthenticated)
           {
-                  foreach (string item in Roles.GetRolesForUser(User.Identity.Name))
+              foreach (string item in Roles.GetRolesForUser(User.Identity.Name))
                 {
                     <li>@item</li>
                 }
