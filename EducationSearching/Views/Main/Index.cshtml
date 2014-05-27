@@ -32,8 +32,6 @@
 
     @if (HttpContext.Current.User.Identity.IsAuthenticated && (!(string.IsNullOrEmpty(User.Identity.Name))))
     {
-        /*String[] roles = new String[1];
-        roles[0] = @ViewBag.UserRole;*/
         var links = from item in menus
                     where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
                     .Any(x => string.Equals(x, @ViewBag.UserRole) || x == "All")

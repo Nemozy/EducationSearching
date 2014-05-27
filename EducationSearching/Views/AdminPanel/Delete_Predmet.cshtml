@@ -1,0 +1,40 @@
+﻿@model EducationSearching.Models.PredmetDB
+
+@{
+    ViewBag.Title = "Удалить";
+}
+<article>
+
+<h2>Удалить</h2>
+
+<h3>Вы хотите удалить?</h3>
+<fieldset>
+    <legend>PredmetDB</legend>
+
+    <div class="display-label">
+       Дисциплина
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Disciplina)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Назад к списку", "Index_Predmet")
+    </p>
+}
+</article>
+
+<aside>
+    <h3>Панель управления</h3>
+    <p>
+
+    </p>
+    <ul>
+        <li>@Html.ActionLink("Предметы", "Index_Predmet", "AdminPanel")</li>
+        <li>@Html.ActionLink("О ВолгГТУе", "About", "Home")</li>
+        <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+    </ul>
+</aside>

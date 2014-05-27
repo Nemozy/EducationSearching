@@ -1,0 +1,54 @@
+﻿@model EducationSearching.Models.PredmetDB
+
+@{
+    ViewBag.Title = "Редактирование";
+}
+
+<article>
+
+    <h2>Редактировать</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>PredmetDB</legend>
+
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="editor-label">
+                Дисциплина
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Disciplina)
+                @Html.ValidationMessageFor(model => model.Disciplina)
+            </div>
+
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+    <div>
+        @Html.ActionLink("Назад к списку", "Index_Predmet")
+    </div>
+
+    </article>
+
+        <aside>
+            <h3>Панель управления</h3>
+            <p>
+
+            </p>
+            <ul>
+                <li>@Html.ActionLink("Предметы", "Index_Predmet", "AdminPanel")</li>
+                <li>@Html.ActionLink("О ВолгГТУе", "About", "Home")</li>
+                <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+            </ul>
+        </aside>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

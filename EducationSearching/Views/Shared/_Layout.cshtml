@@ -29,20 +29,26 @@
                                 {
                                     ViewBag.UserRole = "Anonymous";
                                 }
-                                EducationSearching.Models.webpages_UsersInRoles userInRoles = db.userInRoles.Find(user.UserId);
-                                if (userInRoles == null)
-                                {
-                                    ViewBag.UserRole = "Anonymous";
-                                }
-                                EducationSearching.Models.webpages_Roles roles = db.Roles.Find(userInRoles.RoleId);
-                                if (userInRoles == null)
-                                {
-                                    ViewBag.UserRole = "Anonymous";
-                                }
-                                
-                                if(string.Equals(ViewBag.UserRole,"Administrator"))
+                                else 
                                 { 
-                                    <li>@Html.ActionLink("Админ панель", "Contact", "Home")</li>
+                                    EducationSearching.Models.webpages_UsersInRoles userInRoles = db.userInRoles.Find(user.UserId);
+                                    if (userInRoles == null)
+                                    {
+                                        ViewBag.UserRole = "Anonymous";
+                                    }
+                                    else
+                                    { 
+                                        EducationSearching.Models.webpages_Roles roles = db.Roles.Find(userInRoles.RoleId);
+                                        if (userInRoles == null)
+                                        {
+                                            ViewBag.UserRole = "Anonymous";
+                                        }
+
+                                        if (string.Equals(roles.RoleName, "Administrator"))
+                                        { 
+                                            <li>@Html.ActionLink("Админ панель", "Index", "Admin")</li>
+                                        }
+                                    }
                                 }
                             }
                         </ul>

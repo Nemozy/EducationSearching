@@ -17,7 +17,7 @@ namespace EducationSearching.Filters
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            // Ensure ASP.NET Simple Membership is initialized only once per app start
+            // Обеспечение однократной инициализации ASP.NET Simple Membership при каждом запуске приложения
             LazyInitializer.EnsureInitialized(ref _initializer, ref _isInitialized, ref _initializerLock);
         }
 
@@ -33,7 +33,7 @@ namespace EducationSearching.Filters
                     {
                         if (!context.Database.Exists())
                         {
-                            // Create the SimpleMembership database without Entity Framework migration schema
+                            // Создание базы данных SimpleMembership без схемы миграции Entity Framework
                             ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
                         }
                     }
@@ -42,7 +42,7 @@ namespace EducationSearching.Filters
                 }
                 catch (Exception ex)
                 {
-                    throw new InvalidOperationException("The Simple Membership database could not be initialized.", ex);
+                    throw new InvalidOperationException("Не удалось инициализировать базу данных ASP.NET Simple Membership. Чтобы получить дополнительные сведения, перейдите по адресу: http://go.microsoft.com/fwlink/?LinkId=256588", ex);
                 }
             }
         }

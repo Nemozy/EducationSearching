@@ -11,7 +11,7 @@ namespace EducationSearching.Models
     public class UsersContext : DbContext
     {
         public UsersContext()
-            : base("DB_accounts")//("DefaultConnection")
+            : base("DefaultConnection")//("DefaultConnection")
         {
         }
 
