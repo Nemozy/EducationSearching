@@ -4,46 +4,45 @@
                 {
                    new { LinkText="Home", ActionName="Index",ControllerName="Home",Roles="All"  },
                    new { LinkText="Contact", ActionName="Contact",ControllerName="Home",Roles="Administator"  },
+                   new { LinkText="Contacts", ActionName="Contact",ControllerName="Home",Roles="All"  },
                    
                    //new { LinkText="", ActionName="",ControllerName="",Roles="Administrator"  },
                 };
 }
+<p>Уважаемый(ая), @User.Identity.Name, вы зашли с правами @ViewBag.UserRole'а.</p>
 
-@{
-    ViewBag.Title = "Управление финансами";
-}
 
-<h2>Управление финансами</h2>
-
-<p>Вы: @User.Identity.Name</p>
-<p>Вы входите в группы:</p>
-<table>
-    <tr>
-        @{if (User.Identity.IsAuthenticated)
-          {
-              foreach (string item in Roles.GetRolesForUser(User.Identity.Name))
-                {
-                    <li>@item</li>
-                }
-           }
+<select name="spisokYear">
+    <option disabled selected>Выберите год:<option>
+        @for (int i = 1990; i < 2040;i++ )
+        { 
+            <option value=@i>@i.ToString()</option>
         }
-    </tr>
-</table>
-
+    </select> 
+<select name="spisokSemestr">
+    <option disabled selected>Выберите семестр:
+<option>
+    <option value="1 семестр">1 семестр</option>
+    <option value="2 семестр">2 семестр</option>
+    </select> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    @Html.ActionLink("Открыть...", "Index", "Home")
 
 <ul id="list">
 
     @if (HttpContext.Current.User.Identity.IsAuthenticated && (!(string.IsNullOrEmpty(User.Identity.Name))))
     {
-        String[] roles = Roles.GetRolesForUser(User.Identity.Name);
+        /*String[] roles = new String[1];
+        roles[0] = @ViewBag.UserRole;*/
         var links = from item in menus
                     where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
-                    .Any(x => roles.Contains(x) || x == "All")
+                    .Any(x => string.Equals(x, @ViewBag.UserRole) || x == "All")
                     select item;
         foreach (var link in links)
         {
-        @: <li> @Html.ActionLink(link.LinkText, link.ActionName, link.ControllerName)</li>
-    }
+            @:
+            <li> @Html.ActionLink(link.LinkText, link.ActionName, link.ControllerName)</li>
+        }
     }
     else
     {
@@ -53,7 +52,8 @@
                     select item;
         foreach (var link in links)
         {
-        @: <li> @Html.ActionLink(link.LinkText, link.ActionName, link.ControllerName)</li>
-     }
+            @:
+            <li> @Html.ActionLink(link.LinkText, link.ActionName, link.ControllerName)</li>
+        }
     }
 </ul>

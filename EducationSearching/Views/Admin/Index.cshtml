@@ -1,0 +1,21 @@
+﻿<ul id="list">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Дисциплина</th>
+                <th></th>
+            </tr>
+        </thead>
+@foreach(EducationSearching.Models.PredmetDB item in ViewBag.Predmets)
+{
+    <tbody>
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Disciplina</td>
+                <td><!-- Rating --></td>
+            </tr>
+        </tbody>
+}
+    </table>
+</ul>

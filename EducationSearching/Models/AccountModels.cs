@@ -16,13 +16,13 @@ namespace EducationSearching.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
-        public DbSet<Roles> Roles { get; set; } // добавляем таблицу ролей
-        public DbSet<userInRoles> userInRoles { get; set; } // добавляем таблицу ролей
+        public DbSet<webpages_Roles> Roles { get; set; } // добавляем таблицу ролей
+        public DbSet<webpages_UsersInRoles> userInRoles { get; set; } // добавляем таблицу ролей
     }
 
     // описание таблицы ролей
-    [Table("Roles")]
-    public class Roles
+    [Table("webpages_Roles")]
+    public class webpages_Roles
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -31,8 +31,8 @@ namespace EducationSearching.Models
         public string RoleName { get; set; }
     }
 
-    [Table("userInRoles")]
-    public class userInRoles
+    [Table("webpages_UsersInRoles")]
+    public class webpages_UsersInRoles
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]

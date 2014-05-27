@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+@using EducationSearching.Models;
 <html lang="ru">
     <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -20,8 +21,31 @@
                         <ul id="menu">
                             <li>@Html.ActionLink("Главная", "Index", "Home")</li>
                             <li>@Html.ActionLink("Контакты", "Contact", "Home")</li>
+                            @if (HttpContext.Current.User.Identity.IsAuthenticated && (!(string.IsNullOrEmpty(User.Identity.Name))))
+                            {
+                                UsersContext db = new UsersContext();
+                                EducationSearching.Models.UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == User.Identity.Name.ToLower());
+                                if (user == null)
+                                {
+                                    ViewBag.UserRole = "Anonymous";
+                                }
+                                EducationSearching.Models.webpages_UsersInRoles userInRoles = db.userInRoles.Find(user.UserId);
+                                if (userInRoles == null)
+                                {
+                                    ViewBag.UserRole = "Anonymous";
+                                }
+                                EducationSearching.Models.webpages_Roles roles = db.Roles.Find(userInRoles.RoleId);
+                                if (userInRoles == null)
+                                {
+                                    ViewBag.UserRole = "Anonymous";
+                                }
+                                
+                                if(string.Equals(ViewBag.UserRole,"Administrator"))
+                                { 
+                                    <li>@Html.ActionLink("Админ панель", "Contact", "Home")</li>
+                                }
+                            }
                         </ul>
-                        @Html.Partial("~/Views/Main/Index.cshtml")
                     </nav>
                 </div>
             </div>
