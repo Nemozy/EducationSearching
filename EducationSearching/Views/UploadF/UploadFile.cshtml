@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "UploadFile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Загрузка файлов</h2>
+@using (Html.BeginForm("UploadFile", "UploadF", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr>
+            <td>Программа и исходники (.zip/.rar): </td>
+            <td><input type="file" name="file1" id="file1" style="width:240px;" /></td>
+            <td>Описание файла: </td>
+            <td><input type="text" id="AboutFile1" name="AboutFile1" style="width:240px;" /></td>
+        </tr>
+        <tr>
+            <td>Сканы (.zip/.rar/image): </td>
+            <td><input type="file" name="file2" id="file2" style="width:240px;" /></td>
+            <td>Описание файла: </td>
+            <td><input type="text" id="AboutFile2" name="AboutFile2" style="width:240px;" /></td>
+        </tr>
+        <tr>
+            <td>Документы (.zip/.rar): </td>
+            <td><input type="file" name="file3" id="file3" style="width:240px;" /></td>
+            <td>Описание файла: </td>
+            <td><input type="text" id="AboutFile3" name="AboutFile3" style="width:240px;" /></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" id="btnSubmit" value="Загрузить" />
+            </td>
+        </tr>
+        <tr>
+            @if (ViewData["Success"] != "")
+            {<td><label> @ViewData["Success"]</label></td>}
+        </tr>
+</table>
+}

@@ -96,6 +96,6 @@ C:\Users\1\documents\visual studio 2013\Projects\EducationSearching\EducationSea
 C:\Users\1\documents\visual studio 2013\Projects\EducationSearching\EducationSearching\bin\ru\System.Spatial.resources.dll
 C:\Users\1\documents\visual studio 2013\Projects\EducationSearching\EducationSearching\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\1\documents\visual studio 2013\Projects\EducationSearching\EducationSearching\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\1\documents\visual studio 2013\Projects\EducationSearching\EducationSearching\obj\Debug\EducationSearching.csprojResolveAssemblyReference.cache
 C:\Users\1\documents\visual studio 2013\Projects\EducationSearching\EducationSearching\obj\Debug\EducationSearching.dll
 C:\Users\1\documents\visual studio 2013\Projects\EducationSearching\EducationSearching\obj\Debug\EducationSearching.pdb
+C:\Users\1\Documents\Visual Studio 2013\Projects\EducationSearching\EducationSearching\obj\Debug\EducationSearching.csprojResolveAssemblyReference.cache
