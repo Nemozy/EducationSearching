@@ -83,10 +83,10 @@ namespace EducationSearching.Controllers
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
 
-                    UsersContext db = new UsersContext();
-                    EducationSearching.Models.UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
+                    DBDataContext db = new DBDataContext();
+                    UserProfile user = db.UserProfile.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
 
-                    db.Database.ExecuteSqlCommand("insert into webpages_UsersInRoles (UserId, RoleId) VALUES ({0}, {1})", user.UserId, 1);
+                    db.ExecuteCommand("insert into webpages_UsersInRoles (UserId, RoleId) VALUES ({0}, {1})", user.UserId, 1);
 
                     return RedirectToAction("Index", "Main");
                 }
@@ -270,16 +270,18 @@ namespace EducationSearching.Controllers
             if (ModelState.IsValid)
             {
                 // Добавление нового пользователя в базу данных
-                using (UsersContext db = new UsersContext())
+                using (DBDataContext db = new DBDataContext())
                 {
                     //UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
-                    EducationSearching.Models.UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
+                    UserProfile user = db.UserProfile.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
                     // Проверка наличия пользователя в базе данных
                     if (user == null)
                     {
                         // Добавление имени в таблицу профиля
-                        db.UserProfiles.Add(new EducationSearching.Models.UserProfile { UserName = model.UserName });
-                        db.SaveChanges();
+                        user = new UserProfile();
+                        user.UserName = model.UserName;
+                        db.UserProfile.InsertOnSubmit(user);
+                        db.SubmitChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
                         OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);

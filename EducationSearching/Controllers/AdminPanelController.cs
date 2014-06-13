@@ -11,27 +11,26 @@ namespace EducationSearching.Controllers
 {
     public class AdminPanelController : Controller
     {
-        private DataContext db = new DataContext();
+        private DBDataContext db = new DBDataContext();
 
         //
         // GET: /AdminPanel/
         private bool redirectNonAdmin()
         {
             bool outRes = true;
-            UsersContext db = new UsersContext();
-            EducationSearching.Models.UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == User.Identity.Name.ToLower());
+            UserProfile user = db.UserProfile.FirstOrDefault(u => u.UserName.ToLower() == User.Identity.Name.ToLower());
             if (user == null)
             {
                 ViewBag.UserRole = "Anonymous";
                 return true;
             }
-            EducationSearching.Models.webpages_UsersInRoles userInRoles = db.userInRoles.Find(user.UserId);
+            userInRoles userInRoles = db.userInRoles.FirstOrDefault(u => u.UserId == user.UserId);
             if (userInRoles == null)
             {
                 ViewBag.UserRole = "Anonymous";
                 return true;
             }
-            EducationSearching.Models.webpages_Roles roles = db.Roles.Find(userInRoles.RoleId);
+            webpages_Roles roles = db.webpages_Roles.FirstOrDefault(u => u.RoleId == userInRoles.RoleId);
             if (userInRoles == null)
             {
                 ViewBag.UserRole = "Anonymous";
@@ -74,7 +73,7 @@ namespace EducationSearching.Controllers
                 return RedirectToAction("Index", "Main");
             }
 
-            PredmetDB predmetdb = db.PredmetDB.Find(id);
+            PredmetDB predmetdb = db.PredmetDB.First(u => u.Id == id);
             if (predmetdb == null)
             {
                 return HttpNotFound();
@@ -109,8 +108,8 @@ namespace EducationSearching.Controllers
 
             if (ModelState.IsValid)
             {
-                db.PredmetDB.Add(predmetdb);
-                db.SaveChanges();
+                db.PredmetDB.InsertOnSubmit(predmetdb);
+                db.SubmitChanges();
                 return RedirectToAction("Index_Predmet");
             }
 
@@ -127,7 +126,7 @@ namespace EducationSearching.Controllers
                 return RedirectToAction("Index", "Main");
             }
 
-            PredmetDB predmetdb = db.PredmetDB.Find(id);
+            PredmetDB predmetdb = db.PredmetDB.First(u => u.Id == id);
             if (predmetdb == null)
             {
                 return HttpNotFound();
@@ -149,8 +148,11 @@ namespace EducationSearching.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Entry(predmetdb).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(predmetdb).State = EntityState.Modified;
+
+                PredmetDB predmetdbEdit = db.PredmetDB.First(u => u.Id == predmetdb.Id);
+                predmetdbEdit.Disciplina = predmetdb.Disciplina;
+                db.SubmitChanges();
                 return RedirectToAction("Index_Predmet");
             }
             return View(predmetdb);
@@ -166,7 +168,7 @@ namespace EducationSearching.Controllers
                 return RedirectToAction("Index", "Main");
             }
 
-            PredmetDB predmetdb = db.PredmetDB.Find(id);
+            PredmetDB predmetdb = db.PredmetDB.First(u => u.Id == id);
             if (predmetdb == null)
             {
                 return HttpNotFound();
@@ -186,9 +188,9 @@ namespace EducationSearching.Controllers
                 return RedirectToAction("Index", "Main");
             }
 
-            PredmetDB predmetdb = db.PredmetDB.Find(id);
-            db.PredmetDB.Remove(predmetdb);
-            db.SaveChanges();
+            PredmetDB predmetdb = db.PredmetDB.First(u => u.Id == id);
+            db.PredmetDB.DeleteOnSubmit(predmetdb);
+            db.SubmitChanges();
             return RedirectToAction("Index_Predmet");
         }
 

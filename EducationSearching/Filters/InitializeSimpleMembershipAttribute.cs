@@ -25,7 +25,7 @@ namespace EducationSearching.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<UsersContext>(null);
+                /*Database.SetInitializer<UsersContext>(null);
 
                 try
                 {
@@ -43,7 +43,7 @@ namespace EducationSearching.Filters
                 catch (Exception ex)
                 {
                     throw new InvalidOperationException("Не удалось инициализировать базу данных ASP.NET Simple Membership. Чтобы получить дополнительные сведения, перейдите по адресу: http://go.microsoft.com/fwlink/?LinkId=256588", ex);
-                }
+                }*/
             }
         }
     }

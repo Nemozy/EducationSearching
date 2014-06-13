@@ -21,37 +21,11 @@
                         <ul id="menu">
                             <li>@Html.ActionLink("Главная", "Index", "Home")</li>
                             <li>@Html.ActionLink("Контакты", "Contact", "Home")</li>
-                            @if (HttpContext.Current.User.Identity.IsAuthenticated && (!(string.IsNullOrEmpty(User.Identity.Name))))
-                            {
-                                UsersContext db = new UsersContext();
-                                EducationSearching.Models.UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == User.Identity.Name.ToLower());
-                                if (user == null)
-                                {
-                                    ViewBag.UserRole = "Anonymous";
-                                }
-                                else 
-                                { 
-                                    EducationSearching.Models.webpages_UsersInRoles userInRoles = db.userInRoles.Find(user.UserId);
-                                    if (userInRoles == null)
-                                    {
-                                        ViewBag.UserRole = "Anonymous";
-                                    }
-                                    else
-                                    { 
-                                        EducationSearching.Models.webpages_Roles roles = db.Roles.Find(userInRoles.RoleId);
-                                        if (userInRoles == null)
-                                        {
-                                            ViewBag.UserRole = "Anonymous";
-                                        }
-
-                                        if (string.Equals(roles.RoleName, "Administrator"))
-                                        { 
-                                            <li>@Html.ActionLink("Админ панель", "Index", "Admin")</li>
-                                        }
-                                    }
-                                }
-                                <li>@Html.ActionLink("Загрузить файлы", "UploadFile", "UploadF")</li>
+                            @if (string.Equals(ViewBag.UserRole = "Administrator", "Administrator"))
+                            { 
+                                <li>@Html.ActionLink("Админ панель", "Index", "Admin")</li>
                             }
+							<li>@Html.ActionLink("Загрузить файлы", "UploadFile", "UploadF")</li>
                         </ul>
                     </nav>
                 </div>

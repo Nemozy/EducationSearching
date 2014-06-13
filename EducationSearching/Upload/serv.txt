@@ -1,0 +1,86 @@
+Подключение к БД в серверном приложении изменяется в файле Web.config, строка 13 и 14
+Адрес подключения из андроид клиента к серверу правится в классе MainActivity.java строка 17
+
+SQL запросы на создание БД
+
+CREATE TABLE [dbo].[Bid] (
+    [Id]                       INT            IDENTITY (1, 1) NOT NULL,
+    [BidText]                  NVARCHAR (MAX) NOT NULL,
+    [DataPost]                 DATETIME       NULL,
+    [UserId]                   INT            NOT NULL,
+    [Status]                   NVARCHAR (30)  NOT NULL,
+    [AdminId]                  INT            NULL,
+    [RoomName]                 NVARCHAR (MAX) NULL,
+    [Tema]                     NVARCHAR (MAX) NULL,
+    [DataClosed]               DATETIME       NULL,
+    [SourceSoftware]           NVARCHAR (MAX) NULL,
+    [SoftwareName]             NVARCHAR (MAX) NULL,
+    [NetworkOrInventoryNumber] NVARCHAR (MAX) NULL,
+    [Workstation]              NVARCHAR (MAX) NULL,
+    [FIOShort]                 NVARCHAR (MAX) NULL,
+    CONSTRAINT [PK_Bid] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Session] (
+    [UserId]     INT         NOT NULL,
+    [SessionKey] NCHAR (100) NOT NULL,
+    [Id]         INT         IDENTITY (1, 1) NOT NULL,
+    CONSTRAINT [PK_Session] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Spravochnic] (
+    [Id]               INT            IDENTITY (1, 1) NOT NULL,
+    [SpravochnicValue] NVARCHAR (MAX) NOT NULL,
+    [SpravochnicType]  NVARCHAR (MAX) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[UserProfile] (
+    [UserId]        INT            IDENTITY (1, 1) NOT NULL,
+    [UserName]      NVARCHAR (56)  NOT NULL,
+    [FIOSurname]    NVARCHAR (MAX) NULL,
+    [FIOName]       NVARCHAR (MAX) NULL,
+    [FIOPatronymic] NVARCHAR (MAX) NULL,
+    [FIOShort]      NVARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([UserId] ASC),
+    UNIQUE NONCLUSTERED ([UserName] ASC)
+);
+
+CREATE TABLE [dbo].[webpages_Membership] (
+    [UserId]                                  INT            NOT NULL,
+    [CreateDate]                              DATETIME       NULL,
+    [ConfirmationToken]                       NVARCHAR (128) NULL,
+    [IsConfirmed]                             BIT            DEFAULT ((0)) NULL,
+    [LastPasswordFailureDate]                 DATETIME       NULL,
+    [PasswordFailuresSinceLastSuccess]        INT            DEFAULT ((0)) NOT NULL,
+    [Password]                                NVARCHAR (128) NOT NULL,
+    [PasswordChangedDate]                     DATETIME       NULL,
+    [PasswordSalt]                            NVARCHAR (128) NOT NULL,
+    [PasswordVerificationToken]               NVARCHAR (128) NULL,
+    [PasswordVerificationTokenExpirationDate] DATETIME       NULL,
+    [IsAdmin]                                 BIT            DEFAULT ((0)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([UserId] ASC)
+);
+
+CREATE TABLE [dbo].[webpages_OAuthMembership] (
+    [Provider]       NVARCHAR (30)  NOT NULL,
+    [ProviderUserId] NVARCHAR (100) NOT NULL,
+    [UserId]         INT            NOT NULL,
+    PRIMARY KEY CLUSTERED ([Provider] ASC, [ProviderUserId] ASC)
+);
+
+CREATE TABLE [dbo].[webpages_Roles] (
+    [RoleId]   INT            IDENTITY (1, 1) NOT NULL,
+    [RoleName] NVARCHAR (256) NOT NULL,
+    PRIMARY KEY CLUSTERED ([RoleId] ASC),
+    UNIQUE NONCLUSTERED ([RoleName] ASC)
+);
+
+CREATE TABLE [dbo].[webpages_UsersInRoles] (
+    [UserId] INT NOT NULL,
+    [RoleId] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([UserId] ASC, [RoleId] ASC),
+    CONSTRAINT [fk_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[UserProfile] ([UserId]),
+    CONSTRAINT [fk_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[webpages_Roles] ([RoleId])
+);
+

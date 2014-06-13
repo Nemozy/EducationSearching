@@ -16,20 +16,20 @@ namespace EducationSearching.Controllers
         //[Authorize(Roles = "User")]
         public ActionResult Index()
         {
-            UsersContext db = new UsersContext();
-            EducationSearching.Models.UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == User.Identity.Name.ToLower());
+            DBDataContext db = new DBDataContext();
+            UserProfile user = db.UserProfile.FirstOrDefault(u => u.UserName.ToLower() == User.Identity.Name.ToLower());
             if(user== null)
             {
                 ViewBag.UserRole = "Anonymous";
                 return View();
             }
-            EducationSearching.Models.webpages_UsersInRoles userInRoles = db.userInRoles.Find(user.UserId);
+            userInRoles userInRoles = db.userInRoles.FirstOrDefault(u => u.UserId == user.UserId);
             if (userInRoles == null)
             {
                 ViewBag.UserRole = "Anonymous";
                 return View();
             }
-            EducationSearching.Models.webpages_Roles roles = db.Roles.Find(userInRoles.RoleId);
+            webpages_Roles roles = db.webpages_Roles.FirstOrDefault(u => u.RoleId == userInRoles.RoleId);
             if (userInRoles == null)
             {
                 ViewBag.UserRole = "Anonymous";

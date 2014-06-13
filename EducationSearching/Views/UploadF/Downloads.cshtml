@@ -18,9 +18,21 @@
             <td> @key </td>
             <td> @Model[key].whoUser </td>
             <td> @Model[key].data </td>
-            <td> @Html.ActionLink(@Model[key].program, "DownloadFile", new { Id = @Model[key].programId }, new { title = @Model[key].aboutprogram })</td> 
-            <td> @Html.ActionLink(@Model[key].scan, "DownloadFile", new { Id = @Model[key].scanId }, new { title = @Model[key].aboutscan }) </td> 
-            <td> @Html.ActionLink(@Model[key].docs, "DownloadFile", new { Id = @Model[key].docsId }, new { title = @Model[key].aboutdocs })</td> 
+            <td>@if (@Model[key].programId != 0)
+                { 
+                    @Html.ActionLink(@Model[key].program, "DownloadFile", new { Id = @Model[key].programId }, new { title = @Model[key].aboutprogram })
+                }
+            </td> 
+            <td> @if (@Model[key].scanId != 0)
+                 {
+                     @Html.ActionLink(@Model[key].scan, "DownloadFile", new { Id = @Model[key].scanId }, new { title = @Model[key].aboutscan })
+                 }
+            </td> 
+            <td> @if (@Model[key].docsId != 0)
+                 {
+                     @Html.ActionLink(@Model[key].docs, "DownloadFile", new { Id = @Model[key].docsId }, new { title = @Model[key].aboutdocs })
+                 }
+            </td> 
             <td> @Html.ActionLink("Удалить", "DeleteFiles", new { Id = @key }) </td> 
         </tr>
      }
