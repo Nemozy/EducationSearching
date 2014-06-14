@@ -88,6 +88,12 @@ namespace EducationSearching.Controllers
 
                     db.ExecuteCommand("insert into webpages_UsersInRoles (UserId, RoleId) VALUES ({0}, {1})", user.UserId, 1);
 
+                    if (user != null)
+                    {
+                        user.FIOShort = model.FIOUserName;
+                        db.SubmitChanges();
+                    }
+
                     return RedirectToAction("Index", "Main");
                 }
                 catch (MembershipCreateUserException e)

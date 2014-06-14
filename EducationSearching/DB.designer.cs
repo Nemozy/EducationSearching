@@ -48,9 +48,6 @@ namespace EducationSearching
     partial void InsertuserInRoles(userInRoles instance);
     partial void UpdateuserInRoles(userInRoles instance);
     partial void DeleteuserInRoles(userInRoles instance);
-    partial void InsertUserProfile(UserProfile instance);
-    partial void UpdateUserProfile(UserProfile instance);
-    partial void DeleteUserProfile(UserProfile instance);
     partial void Insertwebpages_Membership(webpages_Membership instance);
     partial void Updatewebpages_Membership(webpages_Membership instance);
     partial void Deletewebpages_Membership(webpages_Membership instance);
@@ -63,6 +60,12 @@ namespace EducationSearching
     partial void Insertwebpages_UsersInRoles(webpages_UsersInRoles instance);
     partial void Updatewebpages_UsersInRoles(webpages_UsersInRoles instance);
     partial void Deletewebpages_UsersInRoles(webpages_UsersInRoles instance);
+    partial void InsertUserProfile(UserProfile instance);
+    partial void UpdateUserProfile(UserProfile instance);
+    partial void DeleteUserProfile(UserProfile instance);
+    partial void InsertPredmetForUser(PredmetForUser instance);
+    partial void UpdatePredmetForUser(PredmetForUser instance);
+    partial void DeletePredmetForUser(PredmetForUser instance);
     #endregion
 		
 		public DBDataContext() : 
@@ -143,14 +146,6 @@ namespace EducationSearching
 			}
 		}
 		
-		public System.Data.Linq.Table<UserProfile> UserProfile
-		{
-			get
-			{
-				return this.GetTable<UserProfile>();
-			}
-		}
-		
 		public System.Data.Linq.Table<webpages_Membership> webpages_Membership
 		{
 			get
@@ -180,6 +175,22 @@ namespace EducationSearching
 			get
 			{
 				return this.GetTable<webpages_UsersInRoles>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserProfile> UserProfile
+		{
+			get
+			{
+				return this.GetTable<UserProfile>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PredmetForUser> PredmetForUser
+		{
+			get
+			{
+				return this.GetTable<PredmetForUser>();
 			}
 		}
 	}
@@ -964,120 +975,6 @@ namespace EducationSearching
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserProfile")]
-	public partial class UserProfile : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _UserId;
-		
-		private string _UserName;
-		
-		private EntitySet<webpages_UsersInRoles> _webpages_UsersInRoles;
-		
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUserIdChanging(int value);
-    partial void OnUserIdChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    #endregion
-		
-		public UserProfile()
-		{
-			this._webpages_UsersInRoles = new EntitySet<webpages_UsersInRoles>(new Action<webpages_UsersInRoles>(this.attach_webpages_UsersInRoles), new Action<webpages_UsersInRoles>(this.detach_webpages_UsersInRoles));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(56) NOT NULL", CanBeNull=false)]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserProfile_webpages_UsersInRoles", Storage="_webpages_UsersInRoles", ThisKey="UserId", OtherKey="UserId")]
-		public EntitySet<webpages_UsersInRoles> webpages_UsersInRoles
-		{
-			get
-			{
-				return this._webpages_UsersInRoles;
-			}
-			set
-			{
-				this._webpages_UsersInRoles.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_webpages_UsersInRoles(webpages_UsersInRoles entity)
-		{
-			this.SendPropertyChanging();
-			entity.UserProfile = this;
-		}
-		
-		private void detach_webpages_UsersInRoles(webpages_UsersInRoles entity)
-		{
-			this.SendPropertyChanging();
-			entity.UserProfile = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.webpages_Membership")]
 	public partial class webpages_Membership : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1747,6 +1644,830 @@ namespace EducationSearching
 						this._UserId = default(int);
 					}
 					this.SendPropertyChanged("UserProfile");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserProfile")]
+	public partial class UserProfile : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UserId;
+		
+		private string _UserName;
+		
+		private string _FIOShort;
+		
+		private EntitySet<webpages_UsersInRoles> _webpages_UsersInRoles;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserIdChanging(int value);
+    partial void OnUserIdChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnFIOShortChanging(string value);
+    partial void OnFIOShortChanged();
+    #endregion
+		
+		public UserProfile()
+		{
+			this._webpages_UsersInRoles = new EntitySet<webpages_UsersInRoles>(new Action<webpages_UsersInRoles>(this.attach_webpages_UsersInRoles), new Action<webpages_UsersInRoles>(this.detach_webpages_UsersInRoles));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(56) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FIOShort", DbType="NVarChar(56)")]
+		public string FIOShort
+		{
+			get
+			{
+				return this._FIOShort;
+			}
+			set
+			{
+				if ((this._FIOShort != value))
+				{
+					this.OnFIOShortChanging(value);
+					this.SendPropertyChanging();
+					this._FIOShort = value;
+					this.SendPropertyChanged("FIOShort");
+					this.OnFIOShortChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserProfile_webpages_UsersInRoles", Storage="_webpages_UsersInRoles", ThisKey="UserId", OtherKey="UserId")]
+		public EntitySet<webpages_UsersInRoles> webpages_UsersInRoles
+		{
+			get
+			{
+				return this._webpages_UsersInRoles;
+			}
+			set
+			{
+				this._webpages_UsersInRoles.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_webpages_UsersInRoles(webpages_UsersInRoles entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserProfile = this;
+		}
+		
+		private void detach_webpages_UsersInRoles(webpages_UsersInRoles entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserProfile = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PredmetForUser")]
+	public partial class PredmetForUser : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _spisokSemestr;
+		
+		private int _FIOUserID;
+		
+		private int _predmetId;
+		
+		private string _FIOShort;
+		
+		private string _predmetName;
+		
+		private string _potok;
+		
+		private string _kolvoGrupp;
+		
+		private string _kolvoPodGrupp;
+		
+		private string _kolvoStudent;
+		
+		private string _lekcii;
+		
+		private string _praktikaPlan;
+		
+		private string _praktikaVsego;
+		
+		private string _labPlan;
+		
+		private string _labVsego;
+		
+		private string _konsultTek;
+		
+		private string _konsultEkz;
+		
+		private string _exzamen;
+		
+		private string _zachet;
+		
+		private string _rykvoPract;
+		
+		private string _rykvoDJPpr;
+		
+		private string _chasSRS;
+		
+		private string _chasReit;
+		
+		private string _rykvoAspirant;
+		
+		private string _vsego;
+		
+		private string _assistent;
+		
+		private string _spisokYear;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnspisokSemestrChanging(string value);
+    partial void OnspisokSemestrChanged();
+    partial void OnFIOUserIDChanging(int value);
+    partial void OnFIOUserIDChanged();
+    partial void OnpredmetIdChanging(int value);
+    partial void OnpredmetIdChanged();
+    partial void OnFIOShortChanging(string value);
+    partial void OnFIOShortChanged();
+    partial void OnpredmetNameChanging(string value);
+    partial void OnpredmetNameChanged();
+    partial void OnpotokChanging(string value);
+    partial void OnpotokChanged();
+    partial void OnkolvoGruppChanging(string value);
+    partial void OnkolvoGruppChanged();
+    partial void OnkolvoPodGruppChanging(string value);
+    partial void OnkolvoPodGruppChanged();
+    partial void OnkolvoStudentChanging(string value);
+    partial void OnkolvoStudentChanged();
+    partial void OnlekciiChanging(string value);
+    partial void OnlekciiChanged();
+    partial void OnpraktikaPlanChanging(string value);
+    partial void OnpraktikaPlanChanged();
+    partial void OnpraktikaVsegoChanging(string value);
+    partial void OnpraktikaVsegoChanged();
+    partial void OnlabPlanChanging(string value);
+    partial void OnlabPlanChanged();
+    partial void OnlabVsegoChanging(string value);
+    partial void OnlabVsegoChanged();
+    partial void OnkonsultTekChanging(string value);
+    partial void OnkonsultTekChanged();
+    partial void OnkonsultEkzChanging(string value);
+    partial void OnkonsultEkzChanged();
+    partial void OnexzamenChanging(string value);
+    partial void OnexzamenChanged();
+    partial void OnzachetChanging(string value);
+    partial void OnzachetChanged();
+    partial void OnrykvoPractChanging(string value);
+    partial void OnrykvoPractChanged();
+    partial void OnrykvoDJPprChanging(string value);
+    partial void OnrykvoDJPprChanged();
+    partial void OnchasSRSChanging(string value);
+    partial void OnchasSRSChanged();
+    partial void OnchasReitChanging(string value);
+    partial void OnchasReitChanged();
+    partial void OnrykvoAspirantChanging(string value);
+    partial void OnrykvoAspirantChanged();
+    partial void OnvsegoChanging(string value);
+    partial void OnvsegoChanged();
+    partial void OnassistentChanging(string value);
+    partial void OnassistentChanged();
+    partial void OnspisokYearChanging(string value);
+    partial void OnspisokYearChanged();
+    #endregion
+		
+		public PredmetForUser()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_spisokSemestr", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string spisokSemestr
+		{
+			get
+			{
+				return this._spisokSemestr;
+			}
+			set
+			{
+				if ((this._spisokSemestr != value))
+				{
+					this.OnspisokSemestrChanging(value);
+					this.SendPropertyChanging();
+					this._spisokSemestr = value;
+					this.SendPropertyChanged("spisokSemestr");
+					this.OnspisokSemestrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FIOUserID", DbType="Int NOT NULL")]
+		public int FIOUserID
+		{
+			get
+			{
+				return this._FIOUserID;
+			}
+			set
+			{
+				if ((this._FIOUserID != value))
+				{
+					this.OnFIOUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._FIOUserID = value;
+					this.SendPropertyChanged("FIOUserID");
+					this.OnFIOUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_predmetId", DbType="Int NOT NULL")]
+		public int predmetId
+		{
+			get
+			{
+				return this._predmetId;
+			}
+			set
+			{
+				if ((this._predmetId != value))
+				{
+					this.OnpredmetIdChanging(value);
+					this.SendPropertyChanging();
+					this._predmetId = value;
+					this.SendPropertyChanged("predmetId");
+					this.OnpredmetIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FIOShort", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string FIOShort
+		{
+			get
+			{
+				return this._FIOShort;
+			}
+			set
+			{
+				if ((this._FIOShort != value))
+				{
+					this.OnFIOShortChanging(value);
+					this.SendPropertyChanging();
+					this._FIOShort = value;
+					this.SendPropertyChanged("FIOShort");
+					this.OnFIOShortChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_predmetName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string predmetName
+		{
+			get
+			{
+				return this._predmetName;
+			}
+			set
+			{
+				if ((this._predmetName != value))
+				{
+					this.OnpredmetNameChanging(value);
+					this.SendPropertyChanging();
+					this._predmetName = value;
+					this.SendPropertyChanged("predmetName");
+					this.OnpredmetNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_potok", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string potok
+		{
+			get
+			{
+				return this._potok;
+			}
+			set
+			{
+				if ((this._potok != value))
+				{
+					this.OnpotokChanging(value);
+					this.SendPropertyChanging();
+					this._potok = value;
+					this.SendPropertyChanged("potok");
+					this.OnpotokChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kolvoGrupp", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string kolvoGrupp
+		{
+			get
+			{
+				return this._kolvoGrupp;
+			}
+			set
+			{
+				if ((this._kolvoGrupp != value))
+				{
+					this.OnkolvoGruppChanging(value);
+					this.SendPropertyChanging();
+					this._kolvoGrupp = value;
+					this.SendPropertyChanged("kolvoGrupp");
+					this.OnkolvoGruppChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kolvoPodGrupp", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string kolvoPodGrupp
+		{
+			get
+			{
+				return this._kolvoPodGrupp;
+			}
+			set
+			{
+				if ((this._kolvoPodGrupp != value))
+				{
+					this.OnkolvoPodGruppChanging(value);
+					this.SendPropertyChanging();
+					this._kolvoPodGrupp = value;
+					this.SendPropertyChanged("kolvoPodGrupp");
+					this.OnkolvoPodGruppChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kolvoStudent", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string kolvoStudent
+		{
+			get
+			{
+				return this._kolvoStudent;
+			}
+			set
+			{
+				if ((this._kolvoStudent != value))
+				{
+					this.OnkolvoStudentChanging(value);
+					this.SendPropertyChanging();
+					this._kolvoStudent = value;
+					this.SendPropertyChanged("kolvoStudent");
+					this.OnkolvoStudentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lekcii", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string lekcii
+		{
+			get
+			{
+				return this._lekcii;
+			}
+			set
+			{
+				if ((this._lekcii != value))
+				{
+					this.OnlekciiChanging(value);
+					this.SendPropertyChanging();
+					this._lekcii = value;
+					this.SendPropertyChanged("lekcii");
+					this.OnlekciiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_praktikaPlan", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string praktikaPlan
+		{
+			get
+			{
+				return this._praktikaPlan;
+			}
+			set
+			{
+				if ((this._praktikaPlan != value))
+				{
+					this.OnpraktikaPlanChanging(value);
+					this.SendPropertyChanging();
+					this._praktikaPlan = value;
+					this.SendPropertyChanged("praktikaPlan");
+					this.OnpraktikaPlanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_praktikaVsego", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string praktikaVsego
+		{
+			get
+			{
+				return this._praktikaVsego;
+			}
+			set
+			{
+				if ((this._praktikaVsego != value))
+				{
+					this.OnpraktikaVsegoChanging(value);
+					this.SendPropertyChanging();
+					this._praktikaVsego = value;
+					this.SendPropertyChanged("praktikaVsego");
+					this.OnpraktikaVsegoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_labPlan", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string labPlan
+		{
+			get
+			{
+				return this._labPlan;
+			}
+			set
+			{
+				if ((this._labPlan != value))
+				{
+					this.OnlabPlanChanging(value);
+					this.SendPropertyChanging();
+					this._labPlan = value;
+					this.SendPropertyChanged("labPlan");
+					this.OnlabPlanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_labVsego", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string labVsego
+		{
+			get
+			{
+				return this._labVsego;
+			}
+			set
+			{
+				if ((this._labVsego != value))
+				{
+					this.OnlabVsegoChanging(value);
+					this.SendPropertyChanging();
+					this._labVsego = value;
+					this.SendPropertyChanged("labVsego");
+					this.OnlabVsegoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_konsultTek", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string konsultTek
+		{
+			get
+			{
+				return this._konsultTek;
+			}
+			set
+			{
+				if ((this._konsultTek != value))
+				{
+					this.OnkonsultTekChanging(value);
+					this.SendPropertyChanging();
+					this._konsultTek = value;
+					this.SendPropertyChanged("konsultTek");
+					this.OnkonsultTekChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_konsultEkz", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string konsultEkz
+		{
+			get
+			{
+				return this._konsultEkz;
+			}
+			set
+			{
+				if ((this._konsultEkz != value))
+				{
+					this.OnkonsultEkzChanging(value);
+					this.SendPropertyChanging();
+					this._konsultEkz = value;
+					this.SendPropertyChanged("konsultEkz");
+					this.OnkonsultEkzChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_exzamen", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string exzamen
+		{
+			get
+			{
+				return this._exzamen;
+			}
+			set
+			{
+				if ((this._exzamen != value))
+				{
+					this.OnexzamenChanging(value);
+					this.SendPropertyChanging();
+					this._exzamen = value;
+					this.SendPropertyChanged("exzamen");
+					this.OnexzamenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_zachet", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string zachet
+		{
+			get
+			{
+				return this._zachet;
+			}
+			set
+			{
+				if ((this._zachet != value))
+				{
+					this.OnzachetChanging(value);
+					this.SendPropertyChanging();
+					this._zachet = value;
+					this.SendPropertyChanged("zachet");
+					this.OnzachetChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rykvoPract", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string rykvoPract
+		{
+			get
+			{
+				return this._rykvoPract;
+			}
+			set
+			{
+				if ((this._rykvoPract != value))
+				{
+					this.OnrykvoPractChanging(value);
+					this.SendPropertyChanging();
+					this._rykvoPract = value;
+					this.SendPropertyChanged("rykvoPract");
+					this.OnrykvoPractChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rykvoDJPpr", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string rykvoDJPpr
+		{
+			get
+			{
+				return this._rykvoDJPpr;
+			}
+			set
+			{
+				if ((this._rykvoDJPpr != value))
+				{
+					this.OnrykvoDJPprChanging(value);
+					this.SendPropertyChanging();
+					this._rykvoDJPpr = value;
+					this.SendPropertyChanged("rykvoDJPpr");
+					this.OnrykvoDJPprChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chasSRS", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string chasSRS
+		{
+			get
+			{
+				return this._chasSRS;
+			}
+			set
+			{
+				if ((this._chasSRS != value))
+				{
+					this.OnchasSRSChanging(value);
+					this.SendPropertyChanging();
+					this._chasSRS = value;
+					this.SendPropertyChanged("chasSRS");
+					this.OnchasSRSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chasReit", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string chasReit
+		{
+			get
+			{
+				return this._chasReit;
+			}
+			set
+			{
+				if ((this._chasReit != value))
+				{
+					this.OnchasReitChanging(value);
+					this.SendPropertyChanging();
+					this._chasReit = value;
+					this.SendPropertyChanged("chasReit");
+					this.OnchasReitChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rykvoAspirant", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string rykvoAspirant
+		{
+			get
+			{
+				return this._rykvoAspirant;
+			}
+			set
+			{
+				if ((this._rykvoAspirant != value))
+				{
+					this.OnrykvoAspirantChanging(value);
+					this.SendPropertyChanging();
+					this._rykvoAspirant = value;
+					this.SendPropertyChanged("rykvoAspirant");
+					this.OnrykvoAspirantChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vsego", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string vsego
+		{
+			get
+			{
+				return this._vsego;
+			}
+			set
+			{
+				if ((this._vsego != value))
+				{
+					this.OnvsegoChanging(value);
+					this.SendPropertyChanging();
+					this._vsego = value;
+					this.SendPropertyChanged("vsego");
+					this.OnvsegoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_assistent", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string assistent
+		{
+			get
+			{
+				return this._assistent;
+			}
+			set
+			{
+				if ((this._assistent != value))
+				{
+					this.OnassistentChanging(value);
+					this.SendPropertyChanging();
+					this._assistent = value;
+					this.SendPropertyChanged("assistent");
+					this.OnassistentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_spisokYear", DbType="NVarChar(MAX)")]
+		public string spisokYear
+		{
+			get
+			{
+				return this._spisokYear;
+			}
+			set
+			{
+				if ((this._spisokYear != value))
+				{
+					this.OnspisokYearChanging(value);
+					this.SendPropertyChanging();
+					this._spisokYear = value;
+					this.SendPropertyChanged("spisokYear");
+					this.OnspisokYearChanged();
 				}
 			}
 		}

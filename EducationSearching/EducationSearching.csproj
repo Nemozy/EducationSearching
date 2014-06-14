@@ -40,6 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -207,6 +213,7 @@
     <Content Include="App_Data\DB_accounts_log.ldf">
       <DependentUpon>DB_accounts.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -331,6 +338,9 @@
     <Content Include="Views\AdminPanel\Edit_Predmet.cshtml" />
     <Content Include="Views\AdminPanel\Delete_Predmet.cshtml" />
     <Content Include="Views\AdminPanel\Index.cshtml" />
+    <Content Include="Views\Main\AddPredmet.cshtml" />
+    <Content Include="Views\Main\Review.cshtml" />
+    <Content Include="Views\Main\EditRecord.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

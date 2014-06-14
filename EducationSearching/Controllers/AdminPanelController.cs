@@ -19,6 +19,7 @@ namespace EducationSearching.Controllers
         {
             bool outRes = true;
             UserProfile user = db.UserProfile.FirstOrDefault(u => u.UserName.ToLower() == User.Identity.Name.ToLower());
+            ViewBag.UserFIO = user.FIOShort;
             if (user == null)
             {
                 ViewBag.UserRole = "Anonymous";

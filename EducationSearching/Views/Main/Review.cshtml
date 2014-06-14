@@ -1,0 +1,179 @@
+﻿@model EducationSearching.PredmetForUser
+
+@{
+    ViewBag.Title = "Просмотр подробной информацим.";
+}
+
+<p class="error">@ViewBag.ConcurrencyErrorMessage</p>
+
+<div>
+    <h4>Подробная информация:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <b>Дисциплина: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.predmetName)
+        </dd>
+
+        <dt>
+            <b>Поток: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.potok)
+        </dd>
+
+        <dt>
+            <b>Количество групп: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.kolvoGrupp)
+        </dd>
+
+        <dt>
+            <b>Количество подгрупп: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.kolvoPodGrupp)
+        </dd>
+
+        <dt>
+            <b>Количество студент: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.kolvoStudent)
+        </dd>
+
+        <dt>
+           <b>Лекции: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.lekcii)
+        </dd>
+
+        <dt>
+            <b>Практика план: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.praktikaPlan)
+        </dd>
+
+        <dt>
+            <b>Практика всего: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.praktikaVsego)
+        </dd>
+
+        <dt>
+            <b>Лабораторные план: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.labPlan)
+        </dd>
+
+        <dt>
+            <b>Лабораторные всего: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.labVsego)
+        </dd>
+
+        <dt>
+            <b>Консультации тек.: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.konsultTek)
+        </dd>
+
+        <dt>
+            <b>Консультации пр. экз: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.konsultEkz)
+        </dd>
+        <dt>
+            <b>Экзамен: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.exzamen)
+        </dd>
+
+        <dt>
+            <b>Зачет: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.zachet)
+        </dd>
+
+        <dt>
+            <b>Рук-во практ.: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.rykvoPract)
+        </dd>
+
+        <dt>
+            <b>Рук-во ДЖП. ПР.: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.rykvoDJPpr)
+        </dd>
+
+        <dt>
+            <b>Часы на ОргСРС: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.chasSRS)
+        </dd>
+
+        <dt>
+            <b>Часы за рейт.: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.chasReit)
+        </dd>
+
+        <dt>
+            <b>Рук-во аспир.: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.rykvoAspirant)
+        </dd>
+
+        <dt>
+            <b>Всего: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.vsego)
+        </dd>
+
+        <dt>
+            <b>Ассистенты: </b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.assistent)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.FIOUserID)
+        @Html.HiddenFor(model => model.Id)
+        
+        <div class="form-actions no-color">
+            <button onclick="location.href='@Url.Action("Index", "Main")'" type="button" class="btn btn-primary">Вернуться</button>
+           @if (string.Equals(@ViewBag.UserRole = "Administrator", "Administrator"))
+            {
+                <button onclick="location.href='@Url.Action("EditRecord", "Main", new { id=Model.Id })'" type="button" class="btn btn-info">Редактировать</button>
+            
+                <button onclick="location.href='@Url.Action("FileReview", "Main", new { id=Model.Id })'" type="button" class="btn btn-warning">Файлы</button>
+            
+                <button onclick="location.href='@Url.Action("Remove", "Main", new { id=Model.Id })'" type="button" class="btn btn-danger">Удалить</button>
+            }
+        </div>
+    }
+</div>

@@ -199,3 +199,7 @@ D:\Project\VS\EducationSearching\EducationSearching\bin\zh-Hant\System.Spatial.r
 D:\Project\VS\EducationSearching\EducationSearching\obj\Debug\EducationSearching.csprojResolveAssemblyReference.cache
 D:\Project\VS\EducationSearching\EducationSearching\obj\Debug\EducationSearching.dll
 D:\Project\VS\EducationSearching\EducationSearching\obj\Debug\EducationSearching.pdb
+D:\Project\VS\EducationSearching\EducationSearching\bin\PagedList.dll
+D:\Project\VS\EducationSearching\EducationSearching\bin\PagedList.Mvc.dll
+D:\Project\VS\EducationSearching\EducationSearching\bin\PagedList.xml
+D:\Project\VS\EducationSearching\EducationSearching\bin\PagedList.Mvc.xml

@@ -1,57 +1,73 @@
-﻿
+﻿@model PagedList.IPagedList<EducationSearching.PredmetForUser>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 @{
-    var menus = new[]
-                {
-                   new { LinkText="Home", ActionName="Index",ControllerName="Home",Roles="All"  },
-                   new { LinkText="Contact", ActionName="Contact",ControllerName="Home",Roles="Administator"  },
-                   new { LinkText="Contacts", ActionName="Contact",ControllerName="Home",Roles="All"  },
-                   
-                   //new { LinkText="", ActionName="",ControllerName="",Roles="Administrator"  },
-                };
+    ViewBag.Title = "Страница предметов у пользователя.";
 }
-<p>Уважаемый(ая), @User.Identity.Name, вы зашли с правами @ViewBag.UserRole'а.</p>
 
-        <select name="spisokYear">
-            <option disabled selected>Выберите год:
-            <option>
-                @for (int i = 1990; i < 2040; i++)
-                {
-                <option value=@i>@i.ToString()</option>
-                }
-            </select>
-            <select name="spisokSemestr">
-                <option disabled selected>Выберите семестр:
-                <option>
-                <option value="1 семестр">1 семестр</option>
-                <option value="2 семестр">2 семестр</option>
-            </select>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            @Html.ActionLink("Открыть...", "Index", "Home")
+    <p>Уважаемый(ая), @ViewBag.UserFIO, вы зашли с правами @ViewBag.UserRole'а.</p>
 
-            <ul id="list">
+    @using (Html.BeginForm("Index", "Main", FormMethod.Get))
+    {
+        <p><select name="spisokYear">
+    <option disabled selected>Выберите год:</option>
+        @for (int i = 2013; i < 2015; i++)
+        {
+            <option value=@i>@i.ToString()</option>
+        }
+    </select>
 
-                @if (HttpContext.Current.User.Identity.IsAuthenticated && (!(string.IsNullOrEmpty(User.Identity.Name))))
+    <select name="spisokSemestr">
+        <option disabled selected>Выберите семестр:</option>
+        <option value="1 семестр">1 семестр</option>
+        <option value="2 семестр">2 семестр</option>
+    </select>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+       <button type="submit" value="Search" class="btn btn-inverse">Открыть период</button></p>
+    }
+
+@if (Model != null || Model.Count != 0 || @Model.PageCount != 0)
+{
+    <table class="table table-hover table-striped">
+        <tr>  
+            <th style="width:90px">Ф. И. О.:</th> 
+            <th style="width:150px">Дисциплина</th> 
+            <th style="width:90px">Поток</th> 
+        </tr> 
+ 
+    @foreach (var item in Model) { 
+        <tr>
+            <td style="width:90px"> 
+                @Html.DisplayFor(modelItem => item.FIOShort) 
+            </td> 
+            <td style="width:150px"> 
+                @Html.DisplayFor(modelItem => item.predmetName) 
+            </td> 
+            <td style="width:90px"> 
+                @Html.DisplayFor(modelItem => item.potok) 
+            </td> 
+        
+            <td class="divider" style="width:90px"> 
+                <button onclick="location.href='@Url.Action("Review", "Main", new { id=item.Id })'" type="button" class="btn btn-primary btn-block btn-small">Подробнее</button>
+                @if (string.Equals(@ViewBag.UserRole = "Administrator", "Administrator"))
                 {
-                    var links = from item in menus
-                                where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
-                                .Any(x => string.Equals(x, @ViewBag.UserRole) || x == "All")
-                                select item;
-                    foreach (var link in links)
-                    {
-                        @:
-                        <li> @Html.ActionLink(link.LinkText, link.ActionName, link.ControllerName)</li>
-                    }
+                    <button onclick="location.href='@Url.Action("EditRecord", "Main", new { id=item.Id })'" type="button" class="btn btn-info btn-block btn-small">Редактировать</button>
+           
+                    <button onclick="location.href='@Url.Action("FileReview", "Main", new { id=item.Id })'" type="button" class="btn btn-warning btn-block btn-small">Файлы</button>
+           
+                    <button onclick="location.href='@Url.Action("Remove", "Main", new { id=item.Id })'" type="button" class="btn btn-danger btn-block btn-small">Удалить</button>
                 }
-                else
-                {
-                    var links = from item in menus
-                                where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
-                                .Any(x => new String[] { "All", "Anonymous" }.Contains(x))
-                                select item;
-                    foreach (var link in links)
-                    {
-                        @:
-                        <li> @Html.ActionLink(link.LinkText, link.ActionName, link.ControllerName)</li>
-                    }
-                }
-            </ul>
+            </td> 
+        </tr> 
+    } 
+ 
+    </table>
+ }   
+    Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page}))
+
+
+
+
+

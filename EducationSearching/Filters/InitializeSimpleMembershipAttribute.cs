@@ -25,13 +25,14 @@ namespace EducationSearching.Filters
         {
             public SimpleMembershipInitializer()
             {
-                /*Database.SetInitializer<UsersContext>(null);
+                WebSecurity.InitializeDatabaseConnection("DB_accountsConnectionString", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                /*//Database.SetInitializer<UsersContext>(null);
 
                 try
                 {
-                    using (var context = new UsersContext())
+                    using (var context = new DBDataContext())
                     {
-                        if (!context.Database.Exists())
+                        if (!context.DatabaseExists())
                         {
                             // Создание базы данных SimpleMembership без схемы миграции Entity Framework
                             ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
