@@ -2,9 +2,23 @@
     ViewBag.Title = "UploadFile";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Загрузка файлов</h2>
+    <h2>Загрузка файлов</h2>
+    <br />
+
+    Выберите дисциплину:
+    
 @using (Html.BeginForm("UploadFile", "UploadF", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    <select name="predmetId">
+        <option disabled selected>Выберите дисциплину:</option>
+        @foreach (string item in ViewBag.predmetSrt)
+        {
+            string idPredmet = item.Split('|')[0];
+            string predmet = item.Split('|')[1];
+            <option value=@idPredmet>@predmet</option>
+        }
+    </select>
+    <br />
     <table>
         <tr>
             <td>Программа и исходники (.zip/.rar): </td>
@@ -25,13 +39,9 @@
             <td><input type="text" id="AboutFile3" name="AboutFile3" style="width:240px;" /></td>
         </tr>
         <tr>
-            <td>
-                <input type="submit" id="btnSubmit" value="Загрузить" />
-            </td>
-        </tr>
-        <tr>
             @if (ViewData["Success"] != "")
             {<td><label> @ViewData["Success"]</label></td>}
         </tr>
 </table>
+    <button type="submit" value="Search" class="btn btn-success">Загрузить</button>
 }

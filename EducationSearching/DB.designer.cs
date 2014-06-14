@@ -30,9 +30,6 @@ namespace EducationSearching
 		
     #region Определения метода расширяемости
     partial void OnCreated();
-    partial void InsertfileContaner(fileContaner instance);
-    partial void UpdatefileContaner(fileContaner instance);
-    partial void DeletefileContaner(fileContaner instance);
     partial void InsertFiles(Files instance);
     partial void UpdateFiles(Files instance);
     partial void DeleteFiles(Files instance);
@@ -66,6 +63,9 @@ namespace EducationSearching
     partial void InsertPredmetForUser(PredmetForUser instance);
     partial void UpdatePredmetForUser(PredmetForUser instance);
     partial void DeletePredmetForUser(PredmetForUser instance);
+    partial void InsertfileContaner(fileContaner instance);
+    partial void UpdatefileContaner(fileContaner instance);
+    partial void DeletefileContaner(fileContaner instance);
     #endregion
 		
 		public DBDataContext() : 
@@ -96,14 +96,6 @@ namespace EducationSearching
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<fileContaner> fileContaner
-		{
-			get
-			{
-				return this.GetTable<fileContaner>();
-			}
 		}
 		
 		public System.Data.Linq.Table<Files> Files
@@ -193,186 +185,12 @@ namespace EducationSearching
 				return this.GetTable<PredmetForUser>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fileContaner")]
-	public partial class fileContaner : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<int> _whoUserId;
-		
-		private System.Nullable<System.DateTime> _data;
-		
-		private System.Nullable<int> _programId;
-		
-		private System.Nullable<int> _scanId;
-		
-		private System.Nullable<int> _docsId;
-		
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnwhoUserIdChanging(System.Nullable<int> value);
-    partial void OnwhoUserIdChanged();
-    partial void OndataChanging(System.Nullable<System.DateTime> value);
-    partial void OndataChanged();
-    partial void OnprogramIdChanging(System.Nullable<int> value);
-    partial void OnprogramIdChanged();
-    partial void OnscanIdChanging(System.Nullable<int> value);
-    partial void OnscanIdChanged();
-    partial void OndocsIdChanging(System.Nullable<int> value);
-    partial void OndocsIdChanged();
-    #endregion
-		
-		public fileContaner()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		public System.Data.Linq.Table<fileContaner> fileContaner
 		{
 			get
 			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_whoUserId", DbType="Int")]
-		public System.Nullable<int> whoUserId
-		{
-			get
-			{
-				return this._whoUserId;
-			}
-			set
-			{
-				if ((this._whoUserId != value))
-				{
-					this.OnwhoUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._whoUserId = value;
-					this.SendPropertyChanged("whoUserId");
-					this.OnwhoUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_data", DbType="DateTime")]
-		public System.Nullable<System.DateTime> data
-		{
-			get
-			{
-				return this._data;
-			}
-			set
-			{
-				if ((this._data != value))
-				{
-					this.OndataChanging(value);
-					this.SendPropertyChanging();
-					this._data = value;
-					this.SendPropertyChanged("data");
-					this.OndataChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_programId", DbType="Int")]
-		public System.Nullable<int> programId
-		{
-			get
-			{
-				return this._programId;
-			}
-			set
-			{
-				if ((this._programId != value))
-				{
-					this.OnprogramIdChanging(value);
-					this.SendPropertyChanging();
-					this._programId = value;
-					this.SendPropertyChanged("programId");
-					this.OnprogramIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_scanId", DbType="Int")]
-		public System.Nullable<int> scanId
-		{
-			get
-			{
-				return this._scanId;
-			}
-			set
-			{
-				if ((this._scanId != value))
-				{
-					this.OnscanIdChanging(value);
-					this.SendPropertyChanging();
-					this._scanId = value;
-					this.SendPropertyChanged("scanId");
-					this.OnscanIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_docsId", DbType="Int")]
-		public System.Nullable<int> docsId
-		{
-			get
-			{
-				return this._docsId;
-			}
-			set
-			{
-				if ((this._docsId != value))
-				{
-					this.OndocsIdChanging(value);
-					this.SendPropertyChanging();
-					this._docsId = value;
-					this.SendPropertyChanged("docsId");
-					this.OndocsIdChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<fileContaner>();
 			}
 		}
 	}
@@ -2468,6 +2286,212 @@ namespace EducationSearching
 					this._spisokYear = value;
 					this.SendPropertyChanged("spisokYear");
 					this.OnspisokYearChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fileContaner")]
+	public partial class fileContaner : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _whoUserId;
+		
+		private System.Nullable<System.DateTime> _data;
+		
+		private System.Nullable<int> _programId;
+		
+		private System.Nullable<int> _scanId;
+		
+		private System.Nullable<int> _docsId;
+		
+		private System.Nullable<int> _predmetId;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnwhoUserIdChanging(System.Nullable<int> value);
+    partial void OnwhoUserIdChanged();
+    partial void OndataChanging(System.Nullable<System.DateTime> value);
+    partial void OndataChanged();
+    partial void OnprogramIdChanging(System.Nullable<int> value);
+    partial void OnprogramIdChanged();
+    partial void OnscanIdChanging(System.Nullable<int> value);
+    partial void OnscanIdChanged();
+    partial void OndocsIdChanging(System.Nullable<int> value);
+    partial void OndocsIdChanged();
+    partial void OnpredmetIdChanging(System.Nullable<int> value);
+    partial void OnpredmetIdChanged();
+    #endregion
+		
+		public fileContaner()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_whoUserId", DbType="Int")]
+		public System.Nullable<int> whoUserId
+		{
+			get
+			{
+				return this._whoUserId;
+			}
+			set
+			{
+				if ((this._whoUserId != value))
+				{
+					this.OnwhoUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._whoUserId = value;
+					this.SendPropertyChanged("whoUserId");
+					this.OnwhoUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_data", DbType="DateTime")]
+		public System.Nullable<System.DateTime> data
+		{
+			get
+			{
+				return this._data;
+			}
+			set
+			{
+				if ((this._data != value))
+				{
+					this.OndataChanging(value);
+					this.SendPropertyChanging();
+					this._data = value;
+					this.SendPropertyChanged("data");
+					this.OndataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_programId", DbType="Int")]
+		public System.Nullable<int> programId
+		{
+			get
+			{
+				return this._programId;
+			}
+			set
+			{
+				if ((this._programId != value))
+				{
+					this.OnprogramIdChanging(value);
+					this.SendPropertyChanging();
+					this._programId = value;
+					this.SendPropertyChanged("programId");
+					this.OnprogramIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_scanId", DbType="Int")]
+		public System.Nullable<int> scanId
+		{
+			get
+			{
+				return this._scanId;
+			}
+			set
+			{
+				if ((this._scanId != value))
+				{
+					this.OnscanIdChanging(value);
+					this.SendPropertyChanging();
+					this._scanId = value;
+					this.SendPropertyChanged("scanId");
+					this.OnscanIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_docsId", DbType="Int")]
+		public System.Nullable<int> docsId
+		{
+			get
+			{
+				return this._docsId;
+			}
+			set
+			{
+				if ((this._docsId != value))
+				{
+					this.OndocsIdChanging(value);
+					this.SendPropertyChanging();
+					this._docsId = value;
+					this.SendPropertyChanged("docsId");
+					this.OndocsIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_predmetId", DbType="Int")]
+		public System.Nullable<int> predmetId
+		{
+			get
+			{
+				return this._predmetId;
+			}
+			set
+			{
+				if ((this._predmetId != value))
+				{
+					this.OnpredmetIdChanging(value);
+					this.SendPropertyChanging();
+					this._predmetId = value;
+					this.SendPropertyChanged("predmetId");
+					this.OnpredmetIdChanged();
 				}
 			}
 		}

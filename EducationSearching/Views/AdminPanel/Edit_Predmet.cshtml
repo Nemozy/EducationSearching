@@ -19,7 +19,7 @@
             @Html.HiddenFor(model => model.Id)
 
             <div class="editor-label">
-                Дисциплина
+                Дисциплина:
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.Disciplina)
@@ -27,12 +27,12 @@
             </div>
 
             <p>
-                <input type="submit" value="Save" />
+                <input type="submit" value="Сохранить изменения" class="btn btn-success"/>
             </p>
         </fieldset>
     }
     <div>
-        @Html.ActionLink("Назад к списку", "Index_Predmet")
+        <button onclick="location.href='@Url.Action("Index_Predmet", "AdminPanel")'" type="button" class="btn btn-primary">Назад к списку</button>
     </div>
 
     </article>
@@ -44,7 +44,6 @@
             </p>
             <ul>
                 <li>@Html.ActionLink("Предметы", "Index_Predmet", "AdminPanel")</li>
-                <li>@Html.ActionLink("Скачать файлы", "Downloads", "UploadF")</li>
                 <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
             </ul>
         </aside>

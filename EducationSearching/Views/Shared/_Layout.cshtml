@@ -21,11 +21,10 @@
                         <ul id="menu">
                             <li>@Html.ActionLink("Главная", "Index", "Home")</li>
                             <li>@Html.ActionLink("Контакты", "Contact", "Home")</li>
-                            @if (string.Equals(ViewBag.UserRole = "Administrator", "Administrator"))
+                            @if (string.Equals(ViewBag.UserRole, "Administrator"))
                             { 
                                 <li>@Html.ActionLink("Админ панель", "Index", "Admin")</li>
                             }
-							<li>@Html.ActionLink("Загрузить файлы", "UploadFile", "UploadF")</li>
                         </ul>
                     </nav>
                 </div>

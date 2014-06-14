@@ -166,12 +166,10 @@
         
         <div class="form-actions no-color">
             <button onclick="location.href='@Url.Action("Index", "Main")'" type="button" class="btn btn-primary">Вернуться</button>
-           @if (string.Equals(@ViewBag.UserRole = "Administrator", "Administrator"))
+            <button onclick="location.href='@Url.Action("Downloads", "UploadF", new { id=Model.predmetId })'" type="button" class="btn btn-warning">Файлы</button>
+            @if (string.Equals(@ViewBag.UserRole, "Administrator"))
             {
                 <button onclick="location.href='@Url.Action("EditRecord", "Main", new { id=Model.Id })'" type="button" class="btn btn-info">Редактировать</button>
-            
-                <button onclick="location.href='@Url.Action("FileReview", "Main", new { id=Model.Id })'" type="button" class="btn btn-warning">Файлы</button>
-            
                 <button onclick="location.href='@Url.Action("Remove", "Main", new { id=Model.Id })'" type="button" class="btn btn-danger">Удалить</button>
             }
         </div>

@@ -12,13 +12,14 @@ namespace EducationSearching.Controllers
         {
             DBDataContext db = new DBDataContext();
             UserProfile user = db.UserProfile.FirstOrDefault(u => u.UserName.ToLower() == User.Identity.Name.ToLower());
-            ViewBag.UserFIO = user.FIOShort;
+            
             if (user == null)
             {
                 ViewBag.UserRole = "Anonymous";
             }
             else
             {
+                ViewBag.UserFIO = user.FIOShort;
                 userInRoles userInRoles = db.userInRoles.FirstOrDefault(u => u.UserId == user.UserId);
                 if (userInRoles == null)
                 {

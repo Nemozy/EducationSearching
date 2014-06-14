@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<EducationSearching.PredmetDB>
 <article>
     <p>
-        @Html.ActionLink("Создать", "Create_Predmet")
+        <button onclick="location.href='@Url.Action("Create_Predmet", "AdminPanel")'" type="button" class="btn btn-success">Создать</button>
     </p>
-    <table>
+    <table class="table table-hover table-striped">
         <tr>
             <th>
                 Дисциплина
@@ -18,9 +18,9 @@
                 @Html.DisplayFor(modelItem => item.Disciplina)
             </td>
             <td>
-                @Html.ActionLink("Редактировать", "Edit_Predmet", new { id = item.Id }) |
-                @Html.ActionLink("Просмотр", "Details_Predmet", new { id = item.Id }) |
-                @Html.ActionLink("Удалить", "Delete_Predmet", new { id = item.Id })
+                <button onclick="location.href='@Url.Action("Edit_Predmet", "AdminPanel", new { id=item.Id })'" type="button" class="btn btn-info btn-block btn-small">Редактировать</button>
+                <button onclick="location.href='@Url.Action("Details_Predmet", "AdminPanel", new { id=item.Id })'" type="button" class="btn btn-primary btn-block btn-small">Просмотр</button>
+                <button onclick="location.href='@Url.Action("Delete_Predmet", "AdminPanel", new { id=item.Id })'" type="button" class="btn btn-danger btn-block btn-small">Удалить</button>
             </td>
         </tr>
         }
@@ -35,8 +35,7 @@
         </p>
         <ul>
             <li>@Html.ActionLink("Предметы", "Index_Predmet", "AdminPanel")</li>
-            <li>@Html.ActionLink("Добавить предмет", "AddPredmet", "Main")</li>
-            <li>@Html.ActionLink("Скачать файлы", "Downloads", "UploadF")</li>
+            <li>@Html.ActionLink("Добавить план", "AddPredmet", "Main")</li>
             <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
         </ul>
     </aside>

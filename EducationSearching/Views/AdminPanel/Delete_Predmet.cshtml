@@ -12,17 +12,19 @@
     <legend>PredmetDB</legend>
 
     <div class="display-label">
-       Дисциплина
+        <br />
+       Дисциплина:
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Disciplina)
     </div>
+    <br />
 </fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Назад к списку", "Index_Predmet")
+        <input type="submit" value="Удалить" class="btn btn-danger btn-small"/> |
+        <button onclick="location.href='@Url.Action("Index_Predmet", "AdminPanel")'" type="button" class="btn btn-primary">Назад к списку</button>
     </p>
 }
 </article>
@@ -34,7 +36,6 @@
     </p>
     <ul>
         <li>@Html.ActionLink("Предметы", "Index_Predmet", "AdminPanel")</li>
-        <li>@Html.ActionLink("Скачать файлы", "Downloads", "UploadF")</li>
         <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
     </ul>
 </aside>

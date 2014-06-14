@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_accounts" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\DB_accounts.mdf;Initial Catalog=DB_accounts;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DB_accountsConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.fileContaner" Member="fileContaner">
-    <Type Name="fileContaner">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="whoUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="programId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="scanId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="docsId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Files" Member="Files">
     <Type Name="Files">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -121,6 +111,17 @@
       <Column Name="vsego" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="assistent" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="spisokYear" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.fileContaner" Member="fileContaner">
+    <Type Name="fileContaner">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="whoUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="programId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="scanId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="docsId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="predmetId" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
