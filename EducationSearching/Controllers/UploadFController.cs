@@ -41,9 +41,9 @@ namespace EducationSearching.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult UploadFile(string Name, string predmetId)
         {
+            ОпределениеСпискаПредметов();
             if (predmetId != null)//значит не выбран предмет!
             {
-                ОпределениеСпискаПредметов();
                 try
                 {
                     //1
@@ -63,8 +63,8 @@ namespace EducationSearching.Controllers
                         fileBytes = new byte[fileLen];
                         Request.Files["file1"].InputStream.Read(fileBytes, 0, fileBytes.Length);
                         Data = fileBytes;
-
-                        _DB.ExecuteCommand("insert into Files (FileData, MimeType, Name, AboutFile) VALUES ({0}, {1}, {2}, {3})", Data, Request.Files["file1"].ContentType, Request.Files["file1"].FileName, Request.Params["AboutFile1"]);
+                        string str1 = Request.Params["AboutFile1"].ToString();
+                        _DB.ExecuteCommand("insert into Files (FileData, MimeType, Name, AboutFile) VALUES ({0}, {1}, {2}, N'" + str1 + "')", Data, Request.Files["file1"].ContentType, Request.Files["file1"].FileName);
                         IdMax1 = (from a in _DB.Files select a.Id).Max();
                     }
                     //2
@@ -80,7 +80,7 @@ namespace EducationSearching.Controllers
                         Request.Files["file2"].InputStream.Read(fileBytes, 0, fileBytes.Length);
                         Data = fileBytes;
 
-                        _DB.ExecuteCommand("insert into Files (FileData, MimeType, Name, AboutFile) VALUES ({0}, {1}, {2}, {3})", Data, Request.Files["file2"].ContentType, Request.Files["file2"].FileName, Request.Params["AboutFile2"]);
+                        _DB.ExecuteCommand("insert into Files (FileData, MimeType, Name, AboutFile) VALUES ({0}, {1}, {2}, N'" + Request.Params["AboutFile2"].ToString() + "')", Data, Request.Files["file2"].ContentType, Request.Files["file2"].FileName);
                         IdMax2 = (from a in _DB.Files select a.Id).Max();
                     }
 
@@ -97,7 +97,7 @@ namespace EducationSearching.Controllers
                         Request.Files["file3"].InputStream.Read(fileBytes, 0, fileBytes.Length);
                         Data = fileBytes;
 
-                        _DB.ExecuteCommand("insert into Files (FileData, MimeType, Name, AboutFile) VALUES ({0}, {1}, {2}, {3})", Data, Request.Files["file3"].ContentType, Request.Files["file3"].FileName, Request.Params["AboutFile3"]);
+                        _DB.ExecuteCommand("insert into Files (FileData, MimeType, Name, AboutFile) VALUES ({0}, {1}, {2}, N'" + Request.Params["AboutFile3"].ToString() + "')", Data, Request.Files["file3"].ContentType, Request.Files["file3"].FileName);
                         IdMax3 = (from a in _DB.Files select a.Id).Max();
                     }
 

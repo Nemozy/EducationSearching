@@ -11,11 +11,14 @@
 {
     <select name="predmetId">
         <option disabled selected>Выберите дисциплину:</option>
-        @foreach (string item in ViewBag.predmetSrt)
-        {
-            string idPredmet = item.Split('|')[0];
-            string predmet = item.Split('|')[1];
-            <option value=@idPredmet>@predmet</option>
+        @if (ViewBag != null && ViewBag.predmetSrt != null)
+        { 
+            foreach (string item in ViewBag.predmetSrt)
+            {
+                string idPredmet = item.Split('|')[0];
+                string predmet = item.Split('|')[1];
+                <option value=@idPredmet>@predmet</option>
+            }
         }
     </select>
     <br />
