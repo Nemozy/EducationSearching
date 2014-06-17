@@ -6,157 +6,172 @@
 
 <p class="error">@ViewBag.ConcurrencyErrorMessage</p>
 
-<div>
+
+
+<div class="form-horizontal">
     <h4>Подробная информация:</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            <b>Дисциплина: </b>
-        </dt>
-        <dd>
+        
+    <div class="form-group">
+        <b>Дисциплина:</b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.predmetName)
-        </dd>
+        </div>
+    </div>
+    <br />
 
-        <dt>
-            <b>Поток: </b>
-        </dt>
-        <dd>
+    <div class="form-group">
+        <b>Поток: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.potok)
-        </dd>
+        </div>
+    </div>
+    <br />
 
-        <dt>
-            <b>Количество групп: </b>
-        </dt>
-        <dd>
+    <div class="form-group">
+        <b>Количество групп: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.kolvoGrupp)
-        </dd>
+        </div>
+    </div>
+    <br />
 
-        <dt>
-            <b>Количество подгрупп: </b>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.kolvoPodGrupp)
-        </dd>
-
-        <dt>
-            <b>Количество студент: </b>
-        </dt>
-        <dd>
+    <div class="form-group">
+        <b>Количество студент: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.kolvoStudent)
-        </dd>
+        </div>
+    </div>
+    <br />
 
-        <dt>
-           <b>Лекции: </b>
-        </dt>
-        <dd>
+    <div class="form-group">
+        <b>Лекции: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.lekcii)
-        </dd>
-
-        <dt>
-            <b>Практика план: </b>
-        </dt>
-        <dd>
+        </div>
+    </div>
+    <br />
+    
+    <div class="form-group">
+        <b>Практика план: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.praktikaPlan)
-        </dd>
+        </div>
+    </div>
+    <br />
 
-        <dt>
-            <b>Практика всего: </b>
-        </dt>
-        <dd>
+      <div class="form-group">
+        <b>Практика всего: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.praktikaVsego)
-        </dd>
+        </div>
+    </div>
+    <br />  
 
-        <dt>
-            <b>Лабораторные план: </b>
-        </dt>
-        <dd>
+     <div class="form-group">
+        <b>Лабораторные план: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.labPlan)
-        </dd>
-
-        <dt>
-            <b>Лабораторные всего: </b>
-        </dt>
-        <dd>
+        </div>
+    </div>
+    <br />  
+        
+    <div class="form-group">
+        <b>Лабораторные всего: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.labVsego)
-        </dd>
-
-        <dt>
-            <b>Консультации тек.: </b>
-        </dt>
-        <dd>
+        </div>
+    </div>
+    <br />  
+        
+    <div class="form-group">
+        <b>Консультации тек.: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.konsultTek)
-        </dd>
-
-        <dt>
-            <b>Консультации пр. экз: </b>
-        </dt>
-        <dd>
+        </div>
+    </div>
+    <br />  
+        
+    <div class="form-group">
+        <b>Консультации пр. экз: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.konsultEkz)
-        </dd>
-        <dt>
-            <b>Экзамен: </b>
-        </dt>
-        <dd>
+        </div>
+    </div>
+    <br />  
+    <div class="form-group">
+        <b>Экзамен: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.exzamen)
-        </dd>
-
-        <dt>
-            <b>Зачет: </b>
-        </dt>
-        <dd>
+        </div>
+    </div>
+    <br />     
+        
+    <div class="form-group">
+        <b>Зачет: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.zachet)
-        </dd>
-
-        <dt>
-            <b>Рук-во практ.: </b>
-        </dt>
-        <dd>
+        </div>
+    </div>
+    <br />  
+        
+    <div class="form-group">
+        <b>Рук-во практ.: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.rykvoPract)
-        </dd>
-
-        <dt>
-            <b>Рук-во ДЖП. ПР.: </b>
-        </dt>
-        <dd>
+        </div>
+    </div>
+    <br />  
+      
+    <div class="form-group">
+        <b>Рук-во ДЖП. ПР.: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.rykvoDJPpr)
-        </dd>
-
-        <dt>
-            <b>Часы на ОргСРС: </b>
-        </dt>
-        <dd>
+        </div>
+    </div>
+    <br />  
+       
+    <div class="form-group">
+        <b>Часы на ОргСРС: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.chasSRS)
-        </dd>
-
-        <dt>
-            <b>Часы за рейт.: </b>
-        </dt>
-        <dd>
+        </div>
+    </div>
+    <br /> 
+       
+    <div class="form-group">
+        <b>Часы за рейт.: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.chasReit)
-        </dd>
+        </div>
+    </div>
+    <br /> 
 
-        <dt>
-            <b>Рук-во аспир.: </b>
-        </dt>
-        <dd>
+    <div class="form-group">
+        <b>Рук-во аспир.: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.rykvoAspirant)
-        </dd>
+        </div>
+    </div>
+    <br />
 
-        <dt>
-            <b>Всего: </b>
-        </dt>
-        <dd>
+    <div class="form-group">
+        <b>Всего: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.vsego)
-        </dd>
+        </div>
+    </div>
+    <br />
 
-        <dt>
-            <b>Ассистенты: </b>
-        </dt>
-        <dd>
+    <div class="form-group">
+        <b>Ассистенты: </b>
+        <div class="col-md-10">
             @Html.DisplayFor(model => model.assistent)
-        </dd>
+        </div>
+    </div>
+    <br />
+</div>
 
-    </dl>
 
     @using (Html.BeginForm())
     {
