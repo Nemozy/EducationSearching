@@ -23,14 +23,14 @@ namespace EducationSearching.Controllers
                 ViewBag.UserRole = "Anonymous";
                 return View();
             }
-            userInRoles userInRoles = db.userInRoles.FirstOrDefault(u => u.UserId == user.UserId);
+            webpages_UsersInRoles userInRoles = db.webpages_UsersInRoles.FirstOrDefault(u => u.UserId == user.UserId);
             if (userInRoles == null)
             {
                 ViewBag.UserRole = "Anonymous";
                 return View();
             }
             webpages_Roles roles = db.webpages_Roles.FirstOrDefault(u => u.RoleId == userInRoles.RoleId);
-            if (userInRoles == null)
+            if (roles == null)
             {
                 ViewBag.UserRole = "Anonymous";
                 return View();

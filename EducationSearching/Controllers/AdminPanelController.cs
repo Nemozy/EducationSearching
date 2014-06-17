@@ -25,7 +25,7 @@ namespace EducationSearching.Controllers
                 ViewBag.UserRole = "Anonymous";
                 return true;
             }
-            userInRoles userInRoles = db.userInRoles.FirstOrDefault(u => u.UserId == user.UserId);
+            webpages_UsersInRoles userInRoles = db.webpages_UsersInRoles.FirstOrDefault(u => u.UserId == user.UserId);
             if (userInRoles == null)
             {
                 ViewBag.UserRole = "Anonymous";

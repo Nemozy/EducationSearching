@@ -64,6 +64,7 @@
       <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="RoleName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
       <Association Name="webpages_Roles_webpages_UsersInRoles" Member="webpages_UsersInRoles" ThisKey="RoleId" OtherKey="RoleId" Type="webpages_UsersInRoles" />
+      <Association Name="webpages_Roles_webpages_UsersInRoles1" Member="webpages_UsersInRoles1" ThisKey="RoleId" OtherKey="RoleId" Type="webpages_UsersInRoles1" />
     </Type>
   </Table>
   <Table Name="dbo.webpages_UsersInRoles" Member="webpages_UsersInRoles">
@@ -80,6 +81,7 @@
       <Column Name="UserName" Type="System.String" DbType="NVarChar(56) NOT NULL" CanBeNull="false" />
       <Column Name="FIOShort" Type="System.String" DbType="NVarChar(56)" CanBeNull="true" />
       <Association Name="UserProfile_webpages_UsersInRoles" Member="webpages_UsersInRoles" ThisKey="UserId" OtherKey="UserId" Type="webpages_UsersInRoles" />
+      <Association Name="UserProfile_webpages_UsersInRoles1" Member="webpages_UsersInRoles1" ThisKey="UserId" OtherKey="UserId" Type="webpages_UsersInRoles1" />
     </Type>
   </Table>
   <Table Name="dbo.PredmetForUser" Member="PredmetForUser">
@@ -122,6 +124,14 @@
       <Column Name="scanId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="docsId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="predmetId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.webpages_UsersInRoles" Member="webpages_UsersInRoles1">
+    <Type Name="webpages_UsersInRoles1">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="webpages_Roles_webpages_UsersInRoles1" Member="webpages_Roles" ThisKey="RoleId" OtherKey="RoleId" Type="webpages_Roles" IsForeignKey="true" />
+      <Association Name="UserProfile_webpages_UsersInRoles1" Member="UserProfile" ThisKey="UserId" OtherKey="UserId" Type="UserProfile" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -20,7 +20,7 @@ namespace EducationSearching.Controllers
             else
             {
                 ViewBag.UserFIO = user.FIOShort;
-                userInRoles userInRoles = db.userInRoles.FirstOrDefault(u => u.UserId == user.UserId);
+                webpages_UsersInRoles userInRoles = db.webpages_UsersInRoles.FirstOrDefault(u => u.UserId == user.UserId);
                 if (userInRoles == null)
                 {
                     ViewBag.UserRole = "Anonymous";
@@ -28,7 +28,7 @@ namespace EducationSearching.Controllers
                 else
                 {
                     webpages_Roles roles = db.webpages_Roles.FirstOrDefault(u => u.RoleId == userInRoles.RoleId);
-                    if (userInRoles == null)
+                    if (roles == null)
                     {
                         ViewBag.UserRole = "Anonymous";
                     }
