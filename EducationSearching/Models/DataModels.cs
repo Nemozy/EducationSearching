@@ -21,6 +21,10 @@ namespace EducationSearching.Models
         public DbSet<PredmetDB> PredmetDB { get; set; } // добавляем таблицу ролей
         public DbSet<Files> Files { get; set; }
         public DbSet<fileContaner> fileContaner { get; set; }
+        public DbSet<UserProfile> UserProfile { get; set; }
+        public DbSet<webpages_Roles> webpages_Roles { get; set; }
+        public DbSet<webpages_UsersInRoles> webpages_UsersInRoles { get; set; }
+        public DbSet<UserProfileR> UserProfileR { get; set; }
     }
 
     // описание таблицы предметов
@@ -62,4 +66,45 @@ namespace EducationSearching.Models
         public int scanId { get; set; }
         public int docsId { get; set; }
     }
+
+    [Table("UserProfile")]
+    public class UserProfile
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int UserId { get; set; }
+        public string UserName { get; set; }
+        public string FIOShort { get; set; }
+    }
+
+    [Table("UserProfile")]
+    public class UserProfileR
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int UserId { get; set; }
+        public string UserName { get; set; }
+        public string FIOShort { get; set; }
+        public webpages_UsersInRoles usersInRoles { get; set; }
+        public webpages_Roles roles { get; set; }
+    }
+
+    [Table("webpages_UsersInRoles")]
+    public class webpages_UsersInRoles
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int UserId { get; set; }
+        public int RoleId { get; set; }
+    }
+
+    [Table("webpages_Roles")]
+    public class webpages_Roles
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public string RoleName { get; set; }
+        public int RoleId { get; set; }
+    }
+
 }

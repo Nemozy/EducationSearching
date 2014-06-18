@@ -1,0 +1,43 @@
+﻿@model IEnumerable<EducationSearching.UserProfile>
+<article>
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>
+                Пользователь
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                Логин: @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                ФИО: @Html.DisplayFor(modelItem => item.FIOShort)
+            </td>
+            <td>
+                <button onclick="location.href='@Url.Action("Edit_Users", "AdminPanel", new { id=item.UserId })'" type="button" class="btn btn-info btn-block btn-small">Редактировать</button>
+                <button onclick="location.href='@Url.Action("Details_Users", "AdminPanel", new { id=item.UserId })'" type="button" class="btn btn-primary btn-block btn-small">Просмотр</button>
+                <button onclick="location.href='@Url.Action("Delete_Users", "AdminPanel", new { id=item.UserId })'" t type="button" class="btn btn-danger btn-block btn-small">Удалить</button>
+            </td>
+        </tr>
+        }
+
+    </table>
+</article>
+
+    <aside>
+        <h3>Панель управления</h3>
+        <p>
+
+        </p>
+        <ul>
+            <li>@Html.ActionLink("Пользователи", "Index_Users", "AdminPanel")</li>
+            <li>@Html.ActionLink("Предметы", "Index_Predmet", "AdminPanel")</li>
+            <li>@Html.ActionLink("Добавить план", "AddPredmet", "Main")</li>
+            <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+        </ul>
+    </aside>
+

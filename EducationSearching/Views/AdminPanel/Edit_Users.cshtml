@@ -1,0 +1,80 @@
+﻿@model EducationSearching.Models.UserProfileR
+
+@{
+    ViewBag.Title = "Редактирование";
+}
+
+<article>
+
+    <h2>Редактировать</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>UserProfileR</legend>
+
+            @Html.HiddenFor(model => model.UserId)
+
+            <div class="editor-label">
+                Пользователь:
+            </div>
+            <div class="editor-field">
+                Логин: @Html.EditorFor(model => model.UserName)
+                        @Html.ValidationMessageFor(model => model.UserName)
+            </div>
+            <div class="editor-field">
+                ФИО: @Html.EditorFor(model => model.FIOShort)
+                    @Html.ValidationMessageFor(model => model.FIOShort)
+            </div>
+
+            <div>
+                Роль:
+                <select name="role">
+                    @if (ViewBag != null && ViewBag.dbRoles != null)
+                    {
+                        foreach (EducationSearching.webpages_Roles item in ViewBag.dbRoles)
+                        {
+                            int idRole = item.RoleId;
+                            string roleName = item.RoleName;
+                            if (ViewBag.RoleId == idRole)
+                            { 
+                                <option selected="selected" value=@idRole>@roleName</option>
+                            }
+                            else
+                            {
+                                <option value=@idRole>@roleName</option>
+                            }
+                        }
+                    }
+               </select>
+            </div>
+
+            <p>
+                <input type="submit" value="Сохранить изменения" class="btn btn-success"/>
+            </p>
+        </fieldset>
+    }
+    <div>
+        <button onclick="location.href='@Url.Action("Index_Users", "AdminPanel")'" type="button" class="btn btn-primary">Назад к списку</button>
+    </div>
+
+    </article>
+
+        <aside>
+            <h3>Панель управления</h3>
+            <p>
+
+            </p>
+            <ul>
+                <li>@Html.ActionLink("Пользователи", "Index_Users", "AdminPanel")</li>
+                <li>@Html.ActionLink("Предметы", "Index_Predmet", "AdminPanel")</li>
+                <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+            </ul>
+        </aside>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

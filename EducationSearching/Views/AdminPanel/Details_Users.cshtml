@@ -1,0 +1,44 @@
+﻿@model EducationSearching.Models.UserProfileR
+
+@{
+    ViewBag.Title = "Подробнее";
+}
+
+<article>
+
+    <h2>Подробнее</h2>
+
+    <fieldset>
+        <legend>UserProfileR</legend>
+
+        <div class="display-label">
+            <br />
+           Пользователь:
+        </div>
+        <div class="display-field">
+            Логин: @Html.DisplayFor(model => model.UserName)
+        </div>
+        <div class="display-field">
+            ФИО: @Html.DisplayFor(model => model.FIOShort)
+        </div>
+        <div class="display-field">
+            Роль: @Html.DisplayFor(model => model.roles.RoleName)
+        </div>
+    </fieldset>
+    <p>
+        <button onclick="location.href='@Url.Action("Edit_Users", "AdminPanel", new { id = Model.UserId })'" type="button" class="btn btn-info btn-primary">Редактировать</button> |
+        <button onclick="location.href='@Url.Action("Index_Users", "AdminPanel")'" t type="button" class="btn btn-primary">Назад к списку</button>
+    </p>
+    </article>
+
+        <aside>
+            <h3>Панель управления</h3>
+            <p>
+
+            </p>
+            <ul>
+                <li>@Html.ActionLink("Пользователи", "Index_Users", "AdminPanel")</li>
+                <li>@Html.ActionLink("Предметы", "Index_Predmet", "AdminPanel")</li>
+                <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+            </ul>
+        </aside>

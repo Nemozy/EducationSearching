@@ -7,7 +7,6 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
         <h4>Редактирование записи.</h4>
         <hr />
@@ -74,100 +73,100 @@
             <br />
             Поток:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.potok, new { @class = "whatever-class", @cols = 80, @rows = 3,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.potok, new { @class = "whatever-class", @cols = 20, @rows = 3,  autocomplete = "off" })
             </div>
 
             Количество групп:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.kolvoGrupp, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.kolvoGrupp, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Количество подгрупп:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.kolvoPodGrupp, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.kolvoPodGrupp, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Количество студент:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.kolvoStudent, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.kolvoStudent, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Лекции:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.lekcii, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.lekcii, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Практика план:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.praktikaPlan, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.praktikaPlan, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Практика всего:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.praktikaVsego, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.praktikaVsego, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Лабораторные план:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.labPlan, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.labPlan, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Лабораторные всего:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.labVsego, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.labVsego, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Консультации тек.:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.konsultTek, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.konsultTek, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Консультации пр. экз:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.konsultEkz, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.konsultEkz, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Экзамен:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.exzamen, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.exzamen, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Зачет:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.zachet, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.zachet, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Рук-во практ.:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.rykvoPract, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.rykvoPract, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Рук-во ДЖП. ПР.:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.rykvoDJPpr, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.rykvoDJPpr, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
 
             <br />
             Часы на ОргСРС:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.chasSRS, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.chasSRS, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Часы за рейт.:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.chasReit,new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.chasReit,new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
 
             <br />
             Рук-во аспир.:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.rykvoAspirant, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.rykvoAspirant, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
 
             <br />
             Всего:
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.vsego, new { @class = "whatever-class", @cols = 20, @rows = 1,  autocomplete = "off" })
+                @Html.TextAreaFor(model => model.vsego, new { style = "Width:70px", @class = "whatever-class", @cols = 1, @rows = 1,  autocomplete = "off" })
             </div>
             <br />
             Ассистенты:

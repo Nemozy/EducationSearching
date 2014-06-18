@@ -349,6 +349,10 @@
     <Content Include="Views\Main\EditRecord.cshtml" />
     <Content Include="Views\UploadF\Downloads.cshtml" />
     <Content Include="Views\UploadF\UploadFile.cshtml" />
+    <Content Include="Views\AdminPanel\Index_Users.cshtml" />
+    <Content Include="Views\AdminPanel\Delete_Users.cshtml" />
+    <Content Include="Views\AdminPanel\Details_Users.cshtml" />
+    <Content Include="Views\AdminPanel\Edit_Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

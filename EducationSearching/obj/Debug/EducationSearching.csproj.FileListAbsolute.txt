@@ -514,6 +514,5 @@ C:\111\EducationSearching\EducationSearching\EducationSearching\EducationSearchi
 C:\111\EducationSearching\EducationSearching\EducationSearching\EducationSearching\bin\ru\System.Spatial.resources.dll
 C:\111\EducationSearching\EducationSearching\EducationSearching\EducationSearching\bin\zh-Hans\System.Spatial.resources.dll
 C:\111\EducationSearching\EducationSearching\EducationSearching\EducationSearching\bin\zh-Hant\System.Spatial.resources.dll
-C:\111\EducationSearching\EducationSearching\EducationSearching\EducationSearching\obj\Debug\EducationSearching.csprojResolveAssemblyReference.cache
 C:\111\EducationSearching\EducationSearching\EducationSearching\EducationSearching\obj\Debug\EducationSearching.dll
 C:\111\EducationSearching\EducationSearching\EducationSearching\EducationSearching\obj\Debug\EducationSearching.pdb
