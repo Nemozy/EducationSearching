@@ -128,7 +128,18 @@ namespace EducationSearching.Controllers
             {
                 API_DB.fileLoad n = new API_DB.fileLoad();
 
-                EducationSearching.Files filea = db.Files.FirstOrDefault(u => u.Id == file.programId);
+                //EducationSearching.Files filea = db.Files.FirstOrDefault(u => u.Id == file.programId);
+                EducationSearching.Files filea = new EducationSearching.Files();
+                filea = db.Files.FirstOrDefault(u => u.Id == file.programId);
+                if(filea == null)
+                {
+                    filea = db.Files.FirstOrDefault(u => u.Id == file.docsId);
+                    if(filea == null)
+                    {
+                        filea = db.Files.FirstOrDefault(u => u.Id == file.scanId);
+                    }
+                }
+
                 if (filea != null)
                 {
                     n.program = filea.Name;
