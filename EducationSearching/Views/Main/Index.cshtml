@@ -12,7 +12,7 @@
     {
         <p><select name="spisokYear">
     <option disabled selected>Выберите год:</option>
-        @for (int i = 2013; i < 2015; i++)
+        @for (int i = 2013; i <= 2015; i++)
         {
             <option value=@i>@i.ToString()</option>
         }
